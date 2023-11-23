@@ -7,7 +7,11 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'brico': ['Bricolage Grotesque', 'sans-serif']
+        'brico': ['Bricolage Grotesque', 'sans-serif'],
+        'lex':[' Lexend Deca', 'sans-serif']
+      },
+      width: {
+        'hug': '541px',
       },
     },
   },
