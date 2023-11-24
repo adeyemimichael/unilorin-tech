@@ -4,7 +4,7 @@ import 'aos/dist/aos.css';
 const Hero = () => {
   AOS.init();
   return (
-    <div>
+    <div id='hero'>
 
 <main className="w-screen  md:h-screen h-[600px] relative ">
 <div className="flex md:flex-row justify-center text-left p-6  flex-col relative  items-center" >

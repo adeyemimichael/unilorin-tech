@@ -16,7 +16,7 @@ const Footer = () => {
     window.location.href = mailtoLink;
   };
   return (
-    <div>  {/* footer section */}
+    <div id="footer">  {/* footer section */}
     <footer className="bg-[#322355] w-screen object-contain">
 <div className=" flex justify-between items-center flex-start md:flex-row flex-col ">
 <h1 className="md:p-10 p-8 text-[#D5B0F3] font-brico font-bold  text-[16px] md:text-[16px] ">Powered by Unilorin Christian Union</h1>

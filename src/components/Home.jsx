@@ -1,6 +1,4 @@
-// import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-// import { useState,useEffect  } from 'react';
-
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Hero from './Hero';
 import Highlight  from './Highlight';
 import AOS from 'aos';
@@ -16,13 +14,22 @@ AOS.init();
 
   return (
       <div>
-  
-<Navbar></Navbar>
-< Hero ></Hero>
-{/* about section */}
-<About></About>
-
-
+   {/* <Router>
+   
+      <Switch>
+      <Route exact path="/" component={Hero} />
+      
+        <Route path="/info" component={Info} />
+        <Route path="/about" component={About} />
+        <Route path="/partners" component={Partners} />
+        <Route path="/highlight" component={Highlight} />
+        <Route path="/sponsors" component={Sponsors} />
+        <Route path="/contact" component={Footer} />
+        </Switch>
+        </Router> */}
+        <Navbar></Navbar>
+        <Hero></Hero>
+        <About></About>
 {/* third section*/}
 <Info></Info>
 {/* fourth section */}
@@ -32,6 +39,8 @@ AOS.init();
  <Partners></Partners>
  <Sponsors></Sponsors>
  <Footer></Footer>
+ 
+
 </div>
   );
 }

@@ -1,6 +1,7 @@
 
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { useState, useEffect  } from 'react';
+
 const Navbar = () => {
   const [nav, setNav] = useState(true);
   useEffect(() => {
@@ -69,24 +70,24 @@ const Navbar = () => {
       <ul className=""> 
     
      <div className="group flex flex-row justify-between w-full hover:border-b-2 hover:border-gray-300">
-      <li  className='  cursor-pointer z-40  p-4 text-center font-lex font-medium text-[14px] md:text-[32px] left-12'>Home 
+    <a href="#hero"><li  className='  cursor-pointer z-40  p-4 text-center font-lex font-medium text-[14px] md:text-[32px] left-12'>Home 
       <span className="invisible  group-hover:visible relative  md:left-60  left-28 cursor-pointer  text-center font-lex  md:text-[16px]">
-        Where our heart is</span></li>
+        Where our heart is</span></li></a>
     
      </div>
      <div className="group mt-4 flex justify-between w-full hover:border-b-2 hover:border-gray-300">
-     <li  className="cursor-pointer z-40  p-4 text-center font-lex font-medium text-[14px] md:text-[32px] left-8" >UTS 23 in pictures<span className="invisible  group-hover:visible relative  md:left-8  left-4 cursor-pointer  text-center font-lex  md:text-[16px]">
-     cool place to explore</span></li>
+     <a href="#highlight"><li  className="cursor-pointer z-40  p-4 text-center font-lex font-medium text-[14px] md:text-[32px] left-8" >UTS 23 in pictures<span className="invisible  group-hover:visible relative  md:left-8  left-4 cursor-pointer  text-center font-lex  md:text-[16px]">
+     cool place to explore</span></li></a>
      </div>
 
      <div className="group mt-4 flex justify-between w-full hover:border-b-2 hover:border-gray-300 w-inherit">
-     <li  className="cursor-pointer z-40  p-4 text-center font-lex font-medium text-[14px] md:text-[32px] left-12" >About Us  <span className="invisible  group-hover:visible relative  md:left-44  left-16 cursor-pointer  text-center font-lex  md:text-[16px]">
-know us and our why</span></li>
+     <a href="#about"> <li  className="cursor-pointer z-40  p-4 text-center font-lex font-medium text-[14px] md:text-[32px] left-12" >About Us  <span className="invisible  group-hover:visible relative  md:left-44  left-16 cursor-pointer  text-center font-lex  md:text-[16px]">
+know us and our why</span></li></a>
      </div>
     
      <div className="group mt-4 flex justify-between w-full hover:border-b-2 hover:border-gray-300">
-     <li  className="cursor-pointer z-40  p-4 text-center font-lex font-medium text-[14px] md:text-[30px] " >Partners and Sponsors <span className="invisible  group-hover:visible relative  md:left-2  left-2 cursor-pointer  text-center font-lex  md:text-[16px]">
-give us money&#x1F450;</span></li>
+     <a href="#sponsors"><li  className="cursor-pointer z-40  p-4 text-center font-lex font-medium text-[14px] md:text-[30px] " >Partners and Sponsors <span className="invisible  group-hover:visible relative  md:left-2  left-2 cursor-pointer  text-center font-lex  md:text-[16px]">
+give us money&#x1F450;</span></li></a>
      </div>
       </ul>
       </div>

@@ -2,7 +2,7 @@ const About = () => {
   
 return (
 <div>
-<section className="section-1 relative md:top-[200px]  ">
+<section className="section-1 relative md:top-[200px]  " id="about">
 <div className="bg-[#fff] md:w-screen md:h-screen md:bottom-[266px] relative" data-aos="zoom-in" data-aos-delay="300">
 <div className="md:w-[1400px] w-screen md:h-[500px] h-fit  flex  flex-col md:flex-row">
 <div className="md:w-[100%] w-screen">

@@ -13,7 +13,7 @@ const Partners = () => {
     window.location.href = mailtoLink;
   };
   return (
-    <div> {/* section for partners  */}
+    <div id="partners"> {/* section for partners  */}
     <div className="bg-[#fff] md:w-screen md:h-[550px]  relative top-[100px] w-screen h-[700px] " data-aos="zoom-in"  data-aos-delay="300">
      <div className="flex justify-center items-center ">
      <h1 className="font-brico md:text-[48px] text-[24px] md:w-[460px] md:h-[102px] relative md:top-[40px] top-[26px] md:left-[50px] font-semibold text-center flex justify-center items-center" data-aos="zoom-in" data-aos-delay="400">Meet our Partners</h1>

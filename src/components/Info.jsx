@@ -1,9 +1,10 @@
+import { TfiArrowRight } from "react-icons/tfi";
 
 const Info = () => {
   const width = "100vw"; 
   return (
     <div>
-  <div className=" bg-[#00ADFF] md:w-screen  md:h-[1028px] w-screen h-[943px] flex flex-col relative items-center md:mt-48 " data-aos="zoom-in"  data-aos-delay="300">
+  <div className=" bg-[#00ADFF] md:w-screen  md:h-[1028px] w-screen h-[943px] flex flex-col relative items-center md:mt-48 " data-aos="zoom-in"  data-aos-delay="300" id="info">
 <div className=" flex flex-col md:flex-row gap-6 relative  md:top-[200px] top-[30px]">
 <div className="">
   <h1 className="  text-[96px] md:text-[200px] font-brico font-medium p-0 h-[100px] md:h-[250px]    text-[#fff] text-center">4 </h1>
@@ -1874,9 +1875,12 @@ const Info = () => {
   </div>
 
   <div className='md:m-4 md:p-4 p-4 md:border-x-4  md:border-t-0 ' data-aos="zoom-in" data-aos-delay="200">
-    <p className=' md:text-[20px] text-[14px] font-brico font-medium leading-[20px]  mx-2 text-wrap text-[#fff]'>You know, we have a very wide Auditorium <br></br> to contain even more people So we got you covered!</p>
+    <p className=' md:text-[20px] text-[14px] font-brico font-medium leading-[20px]  mx-2 text-wrap text-[#fff] '>You know, we have a very wide Auditorium <br></br> to contain even more people So we got you covered!</p>
   </div>
-  <button className='text-[#fff] border-2  w-[220px] h-[64px] m-4 hover:bg-white hover:text-black'data-aos="zoom-in" >Get your Ticket </button>
+  <div className="flex text-[#fff] border-2  w-[220px] h-[64px] m-4 hover:bg-white hover:text-black text-center justify-center items-center" data-aos="zoom-in" >
+  <button className=" mx-2"  > <a href="#ticket">Get your Ticket </a> </button>
+  <TfiArrowRight size= {24} />
+  </div>
 </div>
 </div> 
     </div>
