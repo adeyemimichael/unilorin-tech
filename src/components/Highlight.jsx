@@ -11,12 +11,17 @@ import image6 from "../assets/images/atted.jpg";
 const Highlight = () => {
   const settings = {
     arrows: true,
-    infinite: true,
+    className: "center",
+      centerMode: true,
+      infinite: true,
+      centerPadding: "60px",
       dots: false,
       slidesToShow: 3,
-      autoplay:false,
-      speed: 900,
-    slidesToScroll: 4,
+      autoplay: true,
+      speed: 2000,
+      autoplaySpeed: 2000,
+      cssEase: "linear",
+    slidesToScroll: 2,
     initialSlide: 0,
     responsive: [
       {

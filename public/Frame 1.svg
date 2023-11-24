@@ -1,37 +1,5 @@
-
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import { useState, useEffect  } from 'react';
-const Navbar = () => {
-  const [nav, setNav] = useState(true);
-  useEffect(() => {
-    const storedIsOpen = sessionStorage.getItem('navbarIsOpen');
-    if (storedIsOpen !== null ) {
-        setNav(JSON.parse(storedIsOpen));
-    }
-   
-}, []);
-  const handleNav = () => {
-    setNav(!nav);
-    sessionStorage.setItem('navbarIsOpen', JSON.stringify(!nav));
-}
-
-  // const [currentColorIndex, setCurrentColorIndex] = useState(0);
-
-  // const colors = ['bg-blue-500', 'bg-red-500', 'bg-gray-500', 'bg-gray-300', 'bg-black', 'bg-white'];
-
-  // const handleHover = () => {
-  //   setCurrentColorIndex((currentColorIndex + 1) % colors.length);
-  // };
-
-  // const handleLeave = () => {
-  //   setCurrentColorIndex((currentColorIndex - 1) % colors.length);
-  // }
-  return (
-    <div>
-       <nav className="navbar-class">
-      <div className=" flex justify-between text-center bg-[#fff] md:m-0 m-8  p-4 md:p-6 md:px-16 px-2 w- md:w-full"> 
-     <svg width="219" height="64" viewBox="0 0 219 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="md:w-[219px] w-[100px] cursor-pointer " >
-<g clipPath="url(#clip0_170_344)">
+<svg width="219" height="64" viewBox="0 0 219 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_170_344)">
 <path d="M44.9764 38.5696L44.7539 39.4151L44.9764 38.5696Z" fill="#606060"/>
 <path d="M36.8765 14.0042V31.3601C36.8765 40.2161 29.8896 47.4254 21.0781 47.7815V14.0042H36.8765Z" fill="#973AE0"/>
 <path d="M19.7876 14.0042V47.826C10.9761 47.4699 3.98926 40.2161 3.98926 31.3601V14.0042H19.7876Z" fill="#00ADFF"/>
@@ -64,45 +32,3 @@ const Navbar = () => {
 </clipPath>
 </defs>
 </svg>
-<div className={!nav ? "absolute  shadow-lg flex justify-start md:top-[10px] top-[120px]" :' absolute invisible' } default>
-  <div className= " relative md:absolute flex flex-col bg-white md:left-[600px] z-40 md:p-10  md:top-[100px]  md:w-[603px] w-[100%]  md:h-[440px] rounded-lg  h-100% shadow-lg md:items-start items-center">
-      <ul className=""> 
-    
-     <div className="group flex flex-row justify-between w-full hover:border-b-2 hover:border-gray-300">
-      <li  className='  cursor-pointer z-40  p-4 text-center font-lex font-medium text-[14px] md:text-[32px] left-12'>Home 
-      <span className="invisible  group-hover:visible relative  md:left-60  left-28 cursor-pointer  text-center font-lex  md:text-[16px]">
-        Where our heart is</span></li>
-    
-     </div>
-     <div className="group mt-4 flex justify-between w-full hover:border-b-2 hover:border-gray-300">
-     <li  className="cursor-pointer z-40  p-4 text-center font-lex font-medium text-[14px] md:text-[32px] left-8" >UTS 23 in pictures<span className="invisible  group-hover:visible relative  md:left-8  left-4 cursor-pointer  text-center font-lex  md:text-[16px]">
-     cool place to explore</span></li>
-     </div>
-
-     <div className="group mt-4 flex justify-between w-full hover:border-b-2 hover:border-gray-300 w-inherit">
-     <li  className="cursor-pointer z-40  p-4 text-center font-lex font-medium text-[14px] md:text-[32px] left-12" >About Us  <span className="invisible  group-hover:visible relative  md:left-44  left-16 cursor-pointer  text-center font-lex  md:text-[16px]">
-know us and our why</span></li>
-     </div>
-    
-     <div className="group mt-4 flex justify-between w-full hover:border-b-2 hover:border-gray-300">
-     <li  className="cursor-pointer z-40  p-4 text-center font-lex font-medium text-[14px] md:text-[30px] " >Partners and Sponsors <span className="invisible  group-hover:visible relative  md:left-2  left-2 cursor-pointer  text-center font-lex  md:text-[16px]">
-give us money&#x1F450;</span></li>
-     </div>
-      </ul>
-      </div>
-      {/* <div   className={`w-32 h-32 ${colors[currentColorIndex]} transition duration-300 absolute flex flex-col  md:left-[900px] z-40 p-10  top-[490px] left-1/2 md:w-[60px] max-w-2xl  md:h-[54px] rounded-lg w-[] h-[] shadow-lg items-center justify-center`}
-      onMouseEnter={handleHover} onMouseLeave={handleLeave}>hello</div> */}
-    </div>
-
-  <div onClick={handleNav} className='p-4 cursor-pointer '>
-{ !nav ? <AiOutlineClose size={26} className='  mb-0 cursor-pointer '/>: <AiOutlineMenu size={26} className=' mb-0  mx-2 cursor-pointer   hover:bg-none'/> }
-
-  
-</div>
-      </div>
-    </nav>
-    </div>
-  )
-}
-
-export default Navbar
