@@ -7,7 +7,9 @@ function App() {
       <div>
       <Router>
      <Home/>
+   
      </Router>
+   
       </div>
      
     </>

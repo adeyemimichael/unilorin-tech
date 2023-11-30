@@ -9,6 +9,7 @@ import About from './About'
 import Info from './Info'
 import Partners from './Partners';
 import Footer from './Footer';
+import Talk from "./Talk";
 function Home() {
 AOS.init();
 
@@ -40,7 +41,7 @@ AOS.init();
  <Sponsors></Sponsors>
  <Footer></Footer>
  
-
+<Talk ></Talk >
 </div>
   );
 }
