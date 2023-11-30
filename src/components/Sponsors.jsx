@@ -16,7 +16,7 @@ const Sponsors = () => {
     <div>{
     /* sections for sponsors  */}
 
-    <div className="bg-[#00B66C] md:w-screen md:h-[550px]  w-screen h-screen  " data-aos="zoom-in"  data-aos-delay="300" id="sponsors">
+    <div className="bg-[#00B66C] md:w-screen md:h-[550px]  w-screen h-[700px]  " data-aos="zoom-in"  data-aos-delay="300" id="sponsors">
    <div className="flex justify-center items-center ">
    <h1 className="font-brico md:text-[48px] text-[24px] md:w-[460px] md:h-[102px] relative md:top-[40px] top-[26px] md:left-[50px] font-semibold text-center flex justify-center items-center" data-aos="zoom-in" data-aos-delay="400">Meet our Sponsors</h1>
    </div>
