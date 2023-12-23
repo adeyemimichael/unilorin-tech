@@ -10,6 +10,7 @@ import Info from './Info'
 import Partners from './Partners';
 import Footer from './Footer';
 import Talk from "./Talk";
+import Animation from './Animation';
 function Home() {
 AOS.init();
 
@@ -34,7 +35,7 @@ AOS.init();
 {/* third section*/}
 <Info></Info>
 {/* fourth section */}
-
+<Animation>d</Animation>
 {/* fifth section for highlight */}
  <Highlight></Highlight>
  <Partners></Partners>

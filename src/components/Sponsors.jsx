@@ -2,7 +2,7 @@
 
 const Sponsors = () => {
   const handleMailClick = () => {
-    const email = "Contact@unilorintechsummit.org";
+    const email = "contact@unilorintechsummit.org";
     const subject = " ";
     const body = "";
 
@@ -24,12 +24,12 @@ const Sponsors = () => {
   
     <div className="flex md:flex-row  md:flex-nowrap flex-wrap relative md:top-[60px] justify-center items-center mb-20" data-aos="zoom-in" data-aos-delay="500">
       
-    <div className="md:w-[300px] relative w-[200px] h-[90px] flex justify-center items-center md:text-[16px]  md:h-[166px] border-2 border-dashed border-[#99E2C4] text-[#006D41] bg-[#fff] text-center  rounder-sm mx-4 font-brico font-medium top-[30px] md:mt-0 mt-6 cursor-pointer hover:shadow-lg" onClick={handleMailClick}>Claim this space </div>
-    <div className="md:w-[300px] relative w-[200px] h-[90px] flex justify-center items-center md:text-[16px] md:h-[166px] border-2 border-dashed border-[#99E2C4]  text-[#006D41] bg-[#fff] text-center rounder-sm mx-4 font-brico font-medium top-[30px] md:mt-0 mt-8 cursor-pointer hover:shadow-lg" onClick={handleMailClick}>Claim this space </div>
+    <div className="md:w-[300px] relative w-[200px] h-[90px] flex justify-center items-center md:text-[16px]  md:h-[166px] border-2 border-dashed border-[#99E2C4] text-[#006D41] bg-[#fff] text-center  rounder-sm mx-4 font-brico font-medium top-[30px] md:mt-0 mt-6 cursor-pointer hover:shadow-lg" onClick={handleMailClick} >Claim this space </div>
+    <div className="md:w-[300px] relative w-[200px] h-[90px] flex justify-center items-center md:text-[16px] md:h-[166px] border-2 border-dashed border-[#99E2C4]  text-[#006D41] bg-[#fff] text-center rounder-sm mx-4 font-brico font-medium top-[30px] md:mt-0 mt-8 cursor-pointer hover:shadow-lg" onClick={handleMailClick} >Claim this space </div>
  
     
-    <div className="md:w-[300px] relative w-[200px] h-[90px] flex justify-center  items-center md:text-[16px] md:h-[166px] border-2 border-dashed border-[#99E2C4] text-[#006D41]  bg-[#fff] text-center  rounder-sm mx-4 font-brico font-medium top-[30px] md:mt-0 mt-8 cursor-pointer hover:shadow-lg" onClick={handleMailClick}>Claim this space </div>
-    <div className="md:w-[300px] relative w-[200px] h-[90px] flex justify-center  items-center md:text-[16px] md:h-[166px] border-2 border-dashed border-[#99E2C4] text-[#006D41] bg-[#fff] text-center rounder-sm mx-4 font-brico font-medium top-[30px] md:mt-0 mt-10 cursor-pointer hover:shadow-lg" onClick={handleMailClick}>Claim this space </div>
+    <div className="md:w-[300px] relative w-[200px] h-[90px] flex justify-center  items-center md:text-[16px] md:h-[166px] border-2 border-dashed border-[#99E2C4] text-[#006D41]  bg-[#fff] text-center  rounder-sm mx-4 font-brico font-medium top-[30px] md:mt-0 mt-8 cursor-pointer hover:shadow-lg" onClick={handleMailClick} >Claim this space </div>
+    <div className="md:w-[300px] relative w-[200px] h-[90px] flex justify-center  items-center md:text-[16px] md:h-[166px] border-2 border-dashed border-[#99E2C4] text-[#006D41] bg-[#fff] text-center rounder-sm mx-4 font-brico font-medium top-[30px] md:mt-0 mt-10 cursor-pointer hover:shadow-lg" onClick={handleMailClick} >Claim this space </div>
 
     </div>
     </div></div>
