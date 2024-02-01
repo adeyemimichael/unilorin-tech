@@ -35,9 +35,10 @@ AOS.init();
 {/* third section*/}
 <Info></Info>
 {/* fourth section */}
-<Animation>d</Animation>
+
 {/* fifth section for highlight */}
  <Highlight></Highlight>
+ <Animation></Animation>
  <Partners></Partners>
  <Sponsors></Sponsors>
  <Footer></Footer>

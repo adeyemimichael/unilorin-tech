@@ -7,3 +7,94 @@
 @tailwind utilities;
 
 
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+ 
+  }
+  
+  .wrapper{
+    width: 100%;
+    height: 100vh;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .container{
+    display: flex;
+    width: 800px;
+    height: 500px;
+   flex-wrap: nowrap;
+   justify-content: stat;
+  }
+  .card{
+    width:80px;
+    border-radius: .75rem;
+    background-size: cover;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    margin: 0px 10px;
+    border-radius:2rem ;
+    align-items: flex-end;
+    transition: .6s  cubic-bezier(0.28, -0.03, 0, .99);
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.8);
+  }
+  .card > .row {
+    color: white;
+    display: flex;
+    flex-wrap: nowrap;
+  
+  }
+  .card  > .row  > .icons {
+    display: flex;
+    justify-content: center;
+  align-items: center;
+  background: #223;
+  width: 50px;
+  border-radius: 50%;
+  margin: 15px;
+  }
+  .card  > .row  > .description{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  height:80px ;
+  width: 520px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition-delay:.3s ;
+  transition: all 0.3s ease;
+  }
+  .description p{
+    color: #b0b0ba;
+    padding-top:5px;
+  }
+  .description h4{
+    text-transform: uppercase;
+  }
+  input{
+  display: none;
+  }
+  input:checked + label{
+    width:1200px;
+  }
+  input:checked + label .description{
+   opacity: 1 !important;
+   transform: translateY(0) !important;
+  }
+  .card[for ="c1"]{
+    background: url('/src/components/newIMage/jd.jpeg');
+  }
+  .card[for ="c2"]{
+    background: url('/src/components/newIMage/ot.png');  
+  }
+  .card[for ="c3"]{
+    background: url('/src/components/newIMage/nora.jpeg');
+  }
+  .card[for ="c4"]{
+    background: url('/src/components/newIMage/iyin.jpeg');
+    width:fit;
+  }
