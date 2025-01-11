@@ -1,21 +1,58 @@
 [
-  { "id": 1, "url": "/assets/images/anu.webp" },
-  { "id": 2, "url": "/assets/images/att1.webp" },
-  { "id": 3, "url": "/assets/images/att4.webp" },
-  { "id": 4, "url": "/assets/images/atted.webp" },
-  { "id": 5, "url": "/assets/images/coop.jpg" },
-  { "id": 6, "url": "/assets/images/iss.webp" },
-  { "id": 7, "url": "/assets/images/leye.jpg" },
-  { "id": 8, "url": "/assets/images/att1.webp" },
-  { "id": 9, "url": "/assets/images/att1.webp" },
-  { "id": 10, "url": "/assets/images/att1.webp" },
-  { "id": 11, "url": "/assets/images/att1.webp" },
-  { "id": 12, "url": "/assets/images/att1.webp" },
-  { "id": 13, "url": "/assets/images/att1.webp" },
-  { "id": 14, "url": "/assets/images/att1.webp" },
-  { "id": 15, "url": "/assets/images/att1.webp" },
-  { "id": 16, "url": "/assets/images/att1.webp" },
-  { "id": 17, "url": "/assets/images/att1.webp" },
-  { "id": 18, "url": "/assets/images/att1.webp" }
+  { "id": 1,
+   "url": "/assets/images/anu.webp" 
+  },
+  { "id": 2,
+   "url": "/assets/images/att1.webp" 
+  },
+  { "id": 3, 
+  "url": "/assets/images/att4.webp" 
+},
+  { "id": 4,
+   "url": "/assets/images/atted.webp"
+   },
+
+  { "id": 5, 
+  "url": "/assets/images/coop.jpg" 
+},
+  { "id": 6, 
+  "url": "/assets/images/iss.webp" 
+},
+  { "id": 7,
+   "url": "/assets/images/leye.jpg" 
+},
+  { "id": 8, 
+  "url": "/assets/images/att1.webp" 
+},
+  { "id": 9,
+   "url": "/assets/images/att1.webp" 
+},
+  { "id": 10,
+   "url": "/assets/images/att1.webp"
+ },
+  { "id": 11, 
+  "url": "/assets/images/att1.webp"
+ },
+  { "id": 12, 
+  "url": "/assets/images/att1.webp"
+ },
+  { "id": 13, 
+  "url": "/assets/images/att1.webp"
+ },
+  { "id": 14, 
+  "url": "/assets/images/att1.webp" 
+},
+  { "id": 15, 
+  "url": "/assets/images/att1.webp" 
+},
+  { "id": 16,
+   "url": "/assets/images/att1.webp" 
+},
+  { "id": 17,
+   "url": "/assets/images/att1.webp"
+ },
+  { "id": 18, 
+  "url": "/assets/images/att1.webp" 
+}
   
 ]
