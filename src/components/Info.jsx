@@ -1878,7 +1878,7 @@ const Info = () => {
     <p className=' md:text-[20px] text-[14px] font-brico font-medium leading-[20px]  mx-2 text-wrap text-[#fff] '>You know, we have a very wide Auditorium <br></br> to contain even more people So we got you covered!</p>
   </div>
   <div className="flex text-[#fff] border-2  w-[220px] h-[64px] m-4 hover:bg-white hover:text-black text-center justify-center items-center" data-aos="zoom-in" >
-  <button className=" mx-2"  > <a href="https://techclaritycoach.vercel.app/">Get your Ticket </a> </button>
+  <button className=" mx-2"  > <a href="https://techclaritycoach.vercel.app">Get your Ticket </a> </button>
   <TfiArrowRight size= {24} />
   </div>
 </div>
