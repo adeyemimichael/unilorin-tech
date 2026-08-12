@@ -1,14 +1,73 @@
 import { TfiArrowRight } from "react-icons/tfi";
+import { useState, useEffect, useRef } from "react";
+
+function useCountUp(target, duration = 1800) {
+  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started) {
+          setStarted(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [started]);
+
+  useEffect(() => {
+    if (!started) return;
+    let startTime = null;
+    const step = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      // Ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * target));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [started, target, duration]);
+
+  return { count, ref };
+}
 
 const Info = () => {
-  const width = "100vw"; 
+  const width = "100vw";
+  const speakers = useCountUp(10, 1600);
+  const youngMinds = useCountUp(2000, 2200);
+
   return (
-    <div>
-  <div className=" bg-[#00ADFF] md:w-screen  md:h-[1028px] w-screen h-[943px] flex flex-col relative items-center md:mt-48 " data-aos="zoom-in"  data-aos-delay="300" id="info">
-<div className=" flex flex-col md:flex-row gap-6 relative  md:top-[200px] top-[30px]">
-<div className="">
-  <h1 className="  text-[96px] md:text-[200px] font-brico font-medium p-0 h-[100px] md:h-[250px]    text-[#fff] text-center">4 </h1>
-  <p className=" text-[28px] md:text-[48px] font-brico font-semibold text-center text-[#fff]">Speakers</p>
+    <div className="mb-0 pb-0">
+  <div className="bg-[#00ADFF] md:w-screen md:h-[780px] w-screen h-[750px] flex flex-col relative items-center mt-0" data-aos="zoom-in" data-aos-delay="300" id="info">
+
+    {/* Top info bar */}
+    <div className="w-full flex flex-col md:flex-row justify-between items-center px-6 md:px-16 pt-6 md:pt-8 gap-4">
+      <div className="md:border-l-4 border-white md:pl-5 max-w-[420px]" data-aos="fade-right" data-aos-delay="200">
+        <p className="text-[15px] md:text-[18px] font-brico font-medium leading-[1.5] text-white">
+          We have a very wide Auditorium<br />to contain even more people —<span className="font-bold"> so we got you covered!</span>
+        </p>
+      </div>
+      <a
+        href="https://techclaritycoach.vercel.app"
+        className="group flex items-center gap-3 border-2 border-white text-white px-6 py-3 font-brico font-semibold text-[16px] hover:bg-white hover:text-[#00ADFF] transition-all duration-300"
+        data-aos="fade-left"
+        data-aos-delay="30"
+      >
+        Get your Ticket
+        <TfiArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-200" />
+      </a>
+    </div>
+
+<div className=" flex flex-col md:flex-row gap-6 relative  md:top-[80px] top-[20px]">
+  
+<div className="" ref={speakers.ref}>
+  <h1 className="  text-[96px] md:text-[200px] font-brico font-medium p-0 h-[100px] md:h-[250px]    text-[#fff] text-center tabular-nums">{speakers.count}<span className="text-[60px] md:text-[120px]">+</span></h1>
+  <p className=" text-[24px] md:text-[42px] font-brico font-semibold text-center text-[#fff]">Speakers &amp; Panelists so far</p>
 </div>
 <div className="flex justify-center  text-center">
   <div className="">
@@ -1817,8 +1876,8 @@ const Info = () => {
 </svg>
 
   </div>
-<div className="absolute">
-<h1 className="font-brico  text-[96px] md:text-[200px] text-[#fff] font-medium text-center md:h-[250px] h-[100px]">2000+</h1>
+<div className="absolute" ref={youngMinds.ref}>
+<h1 className="font-brico  text-[96px] md:text-[200px] text-[#fff] font-medium text-center md:h-[250px] h-[100px] tabular-nums">{youngMinds.count}<span className="text-[60px] md:text-[120px]">+</span></h1>
 <h3 className="font-brico text-[28px] md:text-[48px] text-[#fff]  font-semibold text-center md:pt-inherit pt-0">Young minds</h3>
 
 </div>
@@ -1872,15 +1931,11 @@ const Info = () => {
 </clipPath>
 </defs>
 </svg>
+
+
   </div>
 
-  <div className='md:m-4 md:p-4 p-4 md:border-x-4  md:border-t-0 ' data-aos="zoom-in" data-aos-delay="200">
-    <p className=' md:text-[20px] text-[14px] font-brico font-medium leading-[20px]  mx-2 text-wrap text-[#fff] '>You know, we have a very wide Auditorium <br></br> to contain even more people So we got you covered!</p>
-  </div>
-  <div className="flex text-[#fff] border-2  w-[220px] h-[64px] m-4 hover:bg-white hover:text-black text-center justify-center items-center" data-aos="zoom-in" >
-  <button className=" mx-2"  > <a href="https://techclaritycoach.vercel.app">Get your Ticket </a> </button>
-  <TfiArrowRight size= {24} />
-  </div>
+  
 </div>
 </div> 
     </div>

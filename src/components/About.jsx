@@ -1,53 +1,100 @@
+import { useState } from "react";
+
 const About = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const toggleContent = () => {
-    setIsExpanded(!isExpanded);
-  };
-return (
-<div>
-<section className="section-1 relative md:top-[200px]  " id="about">
-<div className="bg-[#fff] md:w-screen md:h-screen md:bottom-[266px] relative" data-aos="zoom-in" data-aos-delay="300">
-<div className="md:w-[1400px] w-screen md:h-[500px] h-fit  flex  flex-col md:flex-row">
-<div className="md:w-[100%] w-screen">
-  <h1 className=" font-brico font-medium md:text-6xl text-[32px]  relative md:top-[126px] md:left-[90px] top-[px] left-[4px] m-2 md:p-4 pl-2 pr-4 pb-2 md:w-[543px] md:h-[204px] w-fit h-fit ">What is Unilorin Tech Summit?</h1>
+  return (
+    <section id="about" className="w-full bg-white px-3 md:px-6 lg:px-8 py-4 font-jakarta">
+      {/* Main Soft Cream Container Card */}
+      <div
+        className="w-full bg-[#FAF6EE] rounded-[28px] sm:rounded-[36px] md:rounded-[44px] py-16 px-6 sm:px-10 md:px-16 lg:px-20 border border-black/5 shadow-2xl relative overflow-hidden"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
+        
+        {/* Top Centered Header & Vertical Divider */}
+        <div className="max-w-3xl mx-auto text-center flex flex-col items-center mb-12 sm:mb-16" data-aos="fade-up" data-aos-delay="150">
+          <p className="text-base md:text-lg text-black/80 font-medium leading-relaxed max-w-2xl">
+            Unilorin Tech Summit empowers students and tech talents with opportunities they might not otherwise have. Through UTS, we provide mentorship, resources, and fully funded tech opportunities to help them learn new skills, accelerate their careers, and reach their full potential.
+          </p>
+          
+          {/* Vertical Pink Line Divider */}
+          <div className="w-[3px] h-14 bg-[#00ADFF] my-8 rounded-full animate-pulse"></div>
+        </div>
 
-  </div>
-<div className="md:w-[100%] md:top-[120px] relative md:m-0 m-2 leading-8 w-screen " id="know-Us">
- <p className="md:p-4  p-4 font-normal md:text-[24px] text-[16px]">Welcome to the Unilorin Tech Summit, a prestigious annual tech extravaganza hosted right within the vibrant heart of Nigeria`s Unilorin University, home to an astounding 40,000+ students.</p>
-<p className="md:p-4 p-4 font-normal md:text-[24px] text-[16px] ">Picture this: Founders, Business Leaders, Tech Enthusiasts, and Entrepreneurs all converging for a tech fiesta where we unlock the secrets to thriving in the ever-evolving Tech Ecosystem. </p>
-<p className="md:p-4  p-4 font-normal md:text-[24px] text-[16px]"> We`re here to equip you with the skills to ride the tech wave and make a global impact – all while having a blast!</p>
+        {/* 2-Column Main Section */}
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          
+          {/* Left Column: Extra Large Display Graphic & 5.0 Badge */}
+          <div className="lg:col-span-6 flex justify-center lg:justify-start" data-aos="fade-right" data-aos-delay="200">
+            <div className="relative inline-block select-none py-4">
+              
+              {/* Massive Oversized Display Heading */}
+              <div className="flex flex-col leading-[0.82] font-extrabold text-black text-6xl sm:text-7xl md:text-8xl lg:text-[96px] xl:text-[112px] tracking-tight">
+                <span>THE HALF</span>
+                <span>DECADE</span>
+                <span className="text-black">EVENT.</span>
+              </div>
 
-{isExpanded && (
-        <p>
-          This is the additional content that will be shown when the user clicks the "Read More" button. It can include more details about the team, mission, or history.
-        </p>
-      )}
-      <button onClick={toggleContent}>
-       
-      </button>
+              {/* Pink Starburst Badge Overlay ("5.0 / 5TH") */}
+              <div className="absolute -top-6 right-[-20px] sm:right-[-35px] w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-[#FF0056] text-white flex items-center justify-center font-extrabold text-2xl sm:text-3xl md:text-4xl rounded-full border-4 border-white shadow-2xl animate-pop-bounce cursor-pointer">
+                <div className="relative z-10 flex flex-col items-center leading-none">
+                  <span>5.0</span>
+                  <span className="text-[10px] sm:text-xs font-bold tracking-widest uppercase mt-0.5 opacity-90">YEARS</span>
+                </div>
+                {/* Decorative Starburst Rings */}
+                <div className="absolute inset-0 bg-[#00ADFF] rounded-full transform rotate-45 -z-0"></div>
+                <div className="absolute inset-0 bg-[#00ADFF] rounded-full transform rotate-12 -z-0"></div>
+              </div>
 
-<button className="bg-[#000] text-[#fff] font-brico font-normal    md:pl-6 md:pr-6 md:pt-3  pr-4 pl-4 pt-2 pb-2 md:pb-3 relative left-[10px] top-[10px] hover:bg-zinc-500 "> {isExpanded ? 'Read Less' : 'Read More'}</button>
-</div>
-</div>
-<div className="relative  md:top-[100px] flex  items-center content-fit w-screen md:mb-[180px]">
-  <svg width="1728" height="" viewBox="0 0 1728 407" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-fit">
-<path d="M1376.8 227.923L1376.45 228.275V227.923H1376.8Z" fill="#00B66C"/>
-<path d="M685.19 221.799L552.59 354.818C484.898 422.723 376.312 424.294 306.532 359.88L564.771 101L685.19 221.799Z" fill="#973AE0"/>
-<path d="M0 236H364.633C360.809 331.097 282.947 407 187.357 407H0V236Z" fill="#00ADFF"/>
-<path d="M750.804 230C848.334 230 927.611 309.189 927.611 407H573.997C573.997 309.189 653.273 230 750.804 230Z" fill="#FFD100"/>
-<path d="M1099.42 253.368L848.716 -0.0682983L722.503 127.52L973.206 380.956L1099.42 253.368Z" fill="#FF0056"/>
-<path d="M1406.44 193.954L1374.42 226.397H1374.08V226.744L1221.86 380.976C1187.61 415.675 1131.96 415.675 1097.55 380.976C1080.42 363.627 1071.86 340.9 1071.86 317.999C1071.86 295.272 1080.42 272.372 1097.55 255.023L1282.13 68L1406.44 193.954Z" fill="#00B66C"/>
-<path d="M1728 317.5C1728 342.274 1718.25 364.605 1702.34 380.83C1686.43 397.056 1664.54 407 1640.25 407H1379.39V228.349L1379.74 228H1640.25C1688.66 228 1728 268.127 1728 317.5Z" fill="#FF6B00"/>
-<path d="M1376.8 227.923L1376.45 228.275V227.923H1376.8Z" fill="#FF6B00"/>
-</svg>
-</div>
-</div>
- 
-</section> 
-  
-</div>
-)
-}
+            </div>
+          </div>
+
+          {/* Right Column: Articulated Copywriting emphasizing 5-Year Milestone */}
+          <div className="lg:col-span-6 flex flex-col gap-6 text-[#14382C] text-base md:text-lg leading-relaxed font-normal" data-aos="fade-left" data-aos-delay="250">
+            
+            <p>
+              <strong className="font-bold text-[#14382C]">Celebrating 5 years of impact: UTS 5.0 (The Half Decade Event).</strong> This landmark edition marks five incredible years of empowering student innovators. This year, <strong className="font-bold text-[#14382C]">laptops and tech grants</strong> will be awarded to selected top-performing tech talents across different categories.
+            </p>
+
+            <p>
+              We are also introducing the <strong className="font-bold text-[#14382C]">5th Anniversary Mentorship & Skill Cohort</strong>. Through this fund, <strong className="font-bold text-[#14382C]">promising beginners</strong> will receive fully funded tech training, mentorship from industry executives, <strong className="font-bold text-[#14382C]">plus cash support</strong> to launch their tech careers.
+            </p>
+
+            <p>
+              <strong className="font-bold text-[#14382C]">To mark our half-decade milestone, UTS 5.0 features two structured tracks:</strong> the <strong className="font-bold text-[#14382C]">Student Developer Track</strong> and the <strong className="font-bold text-[#14382C]">Innovation & Business Track</strong>.
+            </p>
+
+            {/* Read More Collapsible Section */}
+            {isExpanded && (
+              <div className="pt-2 flex flex-col gap-4 text-[#14382C]/90 text-base border-t border-black/10 mt-2 animate-in fade-in duration-300">
+                <p>
+                  Hosted right within the vibrant heart of University of Ilorin — home to over 40,000+ students — Unilorin Tech Summit converges Founders, Business Leaders, Engineers, and Enthusiasts for Nigeria's premier campus tech fiesta.
+                </p>
+                <p>
+                  Our half-decade mission remains steadfast: to equip young talents with the skills, network, and confidence to build solutions that scale globally.
+                </p>
+              </div>
+            )}
+
+            {/* Toggle Button */}
+            <div className="pt-2">
+              <button
+                type="button"
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="inline-flex items-center gap-2 bg-[#14382C] text-white hover:bg-[#1c4d3d] font-semibold text-sm px-6 py-3 rounded-full transition-all duration-300 shadow-md"
+              >
+                <span>{isExpanded ? 'Read Less' : 'Read More About The 5th Edition'}</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  );
+};
 
 export default About;

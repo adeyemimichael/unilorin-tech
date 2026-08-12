@@ -1,50 +1,51 @@
-// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { useEffect } from 'react';
 import Hero from './Hero';
-import Highlight  from './Highlight';
+import Highlight from './Highlight';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Sponsors from './Sponsors';
-import Navbar from './Navbar';
-import About from './About'
-import Info from './Info'
+import About from './About';
+import Info from './Info';
 import Partners from './Partners';
 import Footer from './Footer';
 import Talk from "./Talk";
+import Preloader from './Preloader';
+import ScrollProgress from './ScrollProgress';
+import Tracks from './Tracks';
+import Speakers from './Speakers';
+import Testimonials from './Testimonials';
+
 function Home() {
-AOS.init();
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-out-cubic',
+    });
+  }, []);
 
   return (
-      <div>
-   {/* <Router>
-   
-      <Switch>
-      <Route exact path="/" component={Hero} />
-      
-        <Route path="/info" component={Info} />
-        <Route path="/about" component={About} />
-        <Route path="/partners" component={Partners} />
-        <Route path="/highlight" component={Highlight} />
-        <Route path="/sponsors" component={Sponsors} />
-        <Route path="/contact" component={Footer} />
-        </Switch>
-        </Router> */}
-        <Navbar></Navbar>
-        <Hero></Hero>
-        <About></About>
-{/* third section*/}
-<Info></Info>
-{/* fourth section */}
+    <div className="relative min-h-screen bg-[#14382C]">
+      {/* Interactive Top Reading Scroll Progress Bar */}
+      <ScrollProgress />
 
-{/* fifth section for highlight */}
- <Highlight></Highlight>
- <Partners></Partners>
- <Sponsors></Sponsors>
- <Footer></Footer>
- 
-<Talk ></Talk >
-</div>
+      {/* Initial Smooth Preloader Screen */}
+      <Preloader />
+
+      {/* Main Sections */}
+      <Hero />
+      <About />
+      <Info />
+      <Tracks />
+      <Speakers />
+      <Highlight />
+      <Testimonials />
+      <Partners />
+      <Sponsors />
+      <Footer />
+      <Talk />
+    </div>
   );
 }
-
 
 export default Home;
