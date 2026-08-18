@@ -53,7 +53,7 @@ const Info = () => {
         </p>
       </div>
       <a
-        href="https://techclaritycoach.vercel.app"
+        href="#ticket"
         className="group flex items-center gap-3 border-2 border-white text-white px-6 py-3 font-brico font-semibold text-[16px] hover:bg-white hover:text-[#00ADFF] transition-all duration-300"
         data-aos="fade-left"
         data-aos-delay="30"

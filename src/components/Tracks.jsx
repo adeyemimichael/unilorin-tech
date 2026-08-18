@@ -6,43 +6,43 @@ const tracks = [
     title: "CONTENT\nCREATION",
     color: "#C850FF",       // purple
     iconBg: "#A020F0",
-    cardBg: "#D580FF",
+  
     details: "Written, visual, or video content. If you know how to create content that informs, entertains, or builds community, this is your track.",
     tools: ["Content creation", "Adobe Premiere", "Medium", "Canva", "CapCut", "YouTube Studio", "Grammarly"],
   },
   {
     id: 2,
     title: "PRODUCT\nDESIGN",
-    color: "#FFD600",       // yellow
+    color: "#C850FF",       // yellow
     iconBg: "#E6C000",
-    cardBg: "#FFE566",
+   
     details: "Graphics, motion, or UI/UX. If you turn ideas into visuals and experiences people can use, this track is for you.",
     tools: ["Figma", "Adobe Illustrator", "Figam", "Canva", "Adobe Photoshop", "Agentic"],
   },
   {
     id: 3,
     title: "SOFTWARE\nENGINEERING",
-    color: "#FF6B00",       // orange
+    color: "#C850FF",      // orange
     iconBg: "#E55A00",
-    cardBg: "#FFAA66",
+   
     details: "Frontend, backend, or mobile development. If you build with code, this is your lane.",
     tools: ["Visual Studio Code", "Replit", "Postman", "GitHub", "GIT"],
   },
   {
     id: 4,
     title: "DATA &\nAI",
-    color: "#FF3366",       // pink-red
+    color: "#C850FF",       // pink-red
     iconBg: "#CC0040",
-    cardBg: "#FF8099",
+
     details: "You work with numbers to find patterns, build models, and drive decisions using data and AI.",
     tools: ["Python", "Jupyter", "TensorFlow", "Pandas", "NumPy", "Kaggle"],
   },
   {
     id: 5,
     title: "CYBER\nSECURITY",
-    color: "#00C6FF",       // sky blue
+    color: "#C850FF",      // sky blue
     iconBg: "#0099CC",
-    cardBg: "#66DDFF",
+    
     details: "Protect systems, networks, and data. If you love finding vulnerabilities before bad actors do, this track is yours.",
     tools: ["Kali Linux", "Wireshark", "Burp Suite", "Metasploit", "Nmap"],
   },

@@ -12,7 +12,7 @@ const Navbar = () => {
     { name: "Highlights", href: "#highlight" },
     { name: "Partners", href: "#partners" },
     { name: "Sponsors", href: "#sponsors" },
-    { name: "Contact", href: "#contact" },
+    { name: "Contact", href: "#ticket" },
   ];
 
   return (
@@ -84,7 +84,7 @@ const Navbar = () => {
             ))}
           </ul>
           <a
-            href="#contact"
+            href="#ticket"
             onClick={() => setMobileMenuOpen(false)}
             className="flex items-center justify-between bg-[#14382C] text-white rounded-full px-6 py-3 text-sm font-semibold"
           >
