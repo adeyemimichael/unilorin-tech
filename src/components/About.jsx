@@ -4,7 +4,7 @@ const About = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <section id="about" className="w-full bg-white px-3 md:px-6 lg:px-8 py-4 font-jakarta">
+    <section id="about" className="w-full bg-white px-3 md:px-6 lg:px-8 py-4 font-brico">
       {/* Main Soft Cream Container Card */}
       <div
         className="w-full bg-[#FAF6EE] rounded-[28px] sm:rounded-[36px] md:rounded-[44px] py-16 px-6 sm:px-10 md:px-16 lg:px-20 border border-black/5 shadow-2xl relative overflow-hidden"

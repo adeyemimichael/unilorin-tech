@@ -26,7 +26,7 @@ const Preloader = ({ onComplete }) => {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] bg-[#00ADFF] flex flex-col justify-between p-8 md:p-12 font-jakarta transition-all duration-700 ease-in-out ${
+      className={`fixed inset-0 z-[9999] bg-[#00ADFF] flex flex-col justify-between p-8 md:p-12 font-brico transition-all duration-700 ease-in-out ${
         isDone ? '-translate-y-full opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
       }`}
     >

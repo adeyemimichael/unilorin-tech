@@ -1,120 +1,101 @@
-import { useState } from "react";
-import { FaPlus, FaHandshake, FaArrowRight, FaExternalLinkAlt } from "react-icons/fa";
-
-const partnerData = [
-  {
-    id: 1,
-    name: "GitHub",
-    category: "Sponsors",
-    tier: "Headline Sponsor",
-    badgeBg: "bg-[#FF0056] text-white",
-    years: ["2022", "2023", "2024"],
-    description: "Empowering student developers worldwide with open source tools and student developer packs.",
-    logoText: "GitHub",
-    logoBg: "bg-black text-white",
-    link: "https://github.com",
-  },
-  {
-    id: 2,
-    name: "Paystack",
-    category: "Sponsors",
-    tier: "Gold Sponsor",
-    badgeBg: "bg-[#00ADFF] text-black",
-    years: ["2021", "2022", "2023", "2024"],
-    description: "Modern online and offline payments for African businesses and developer ecosystems.",
-    logoText: "Paystack",
-    logoBg: "bg-[#00C3F7] text-black",
-    link: "https://paystack.com",
-  },
-  {
-    id: 3,
-    name: "Ingressive for Good",
-    category: "Ecosystem Partners",
-    tier: "Talent Partner",
-    badgeBg: "bg-[#00B66C] text-white",
-    years: ["2022", "2023"],
-    description: "Non-profit empowering African youth with tech skills, micro-grants, and laptop donations.",
-    logoText: "I4G",
-    logoBg: "bg-[#00B66C] text-white",
-    link: "https://ingressive.org",
-  },
-  {
-    id: 4,
-    name: "Google Developer Student Clubs",
-    category: "Ecosystem Partners",
-    tier: "Community Partner",
-    badgeBg: "bg-[#FFD100] text-black",
-    years: ["2021", "2022", "2023", "2024"],
-    description: "University-based community groups for students interested in Google developer technologies.",
-    logoText: "GDSC Unilorin",
-    logoBg: "bg-[#4285F4] text-white",
-    link: "#",
-  },
-  {
-    id: 5,
-    name: "Cowrywise",
-    category: "Sponsors",
-    tier: "Fintech Sponsor",
-    badgeBg: "bg-[#973AE0] text-white",
-    years: ["2023", "2024"],
-    description: "Digital wealth management platform empowering young Africans with financial literacy.",
-    logoText: "Cowrywise",
-    logoBg: "bg-[#0066FF] text-white",
-    link: "https://cowrywise.com",
-  },
-  {
-    id: 6,
-    name: "Vercel",
-    category: "Sponsors",
-    tier: "Infrastructure Partner",
-    badgeBg: "bg-black text-white",
-    years: ["2023", "2024"],
-    description: "Developer experience platform for deploying frontend frameworks and serverless functions.",
-    logoText: "Vercel",
-    logoBg: "bg-black text-white",
-    link: "https://vercel.com",
-  },
-  {
-    id: 7,
-    name: "Tech Cabal / Tech234",
-    category: "Media",
-    tier: "Official Media Partner",
-    badgeBg: "bg-[#FF0056] text-white",
-    years: ["2022", "2023", "2024"],
-    description: "Covering the technology, businesses, and creators shaping the future of African innovation.",
-    logoText: "TechCabal",
-    logoBg: "bg-[#FF0056] text-white",
-    link: "https://techcabal.com",
-  },
-];
+import { useState, useEffect } from "react";
+import { FaPlus, FaHandshake, FaArrowRight, FaExternalLinkAlt, FaTimes, FaCheck } from "react-icons/fa";
+import { supabase } from "../lib/supabaseClient";
 
 const categories = ["All Partners", "Sponsors", "Ecosystem Partners", "Media"];
 
 const Partners = () => {
   const [activeCategory, setActiveCategory] = useState("All Partners");
+  const [partners, setPartners] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const handleMailClick = () => {
-    const email = "Contact@unilorintechsummit.org";
-    const subject = "UTS 5.0 Partnership Proposal";
-    const body =
-      "Hello UTS Team,\n\nWe would like to partner with Unilorin Tech Summit 5.0 (The Half Decade Event).\n\nCompany Name:\nContact Person:\nProposed Partnership Tier:\n";
+  // Modal State for Claim Your Spot Form
+  const [showModal, setShowModal] = useState(false);
+  const [targetTier, setTargetTier] = useState("Gold Sponsor");
+  const [formData, setFormData] = useState({
+    companyName: "",
+    contactName: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
-    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
+  useEffect(() => {
+    fetchSponsorsFromSupabase();
+  }, []);
 
-    window.location.href = mailtoLink;
+  const fetchSponsorsFromSupabase = async () => {
+    try {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from("sponsors")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) throw error;
+      setPartners(data || []);
+    } catch (err) {
+      console.error("Error fetching sponsors from Supabase:", err.message);
+      setPartners([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleOpenClaimModal = (tier = "Gold Sponsor") => {
+    setTargetTier(tier);
+    setShowModal(true);
+    setSubmitted(false);
+  };
+
+  const handleFormChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleInquirySubmit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+
+    try {
+      const { error } = await supabase.from("partnership_inquiries").insert([
+        {
+          company_name: formData.companyName,
+          contact_name: formData.contactName,
+          email: formData.email,
+          phone: formData.phone,
+          target_tier: targetTier,
+          proposal_message: formData.message,
+        },
+      ]);
+
+      if (error) throw error;
+      setSubmitted(true);
+      setFormData({
+        companyName: "",
+        contactName: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+    } catch (err) {
+      console.error("Submission error:", err.message);
+      setSubmitted(true);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const filteredPartners =
     activeCategory === "All Partners"
-      ? partnerData
-      : partnerData.filter((p) => p.category === activeCategory);
+      ? partners
+      : partners.filter((p) => p.category === activeCategory || p.tier?.includes(activeCategory));
 
   return (
     <section
       id="partners"
-      className="w-full bg-[#FAF6EE] py-16 px-4 sm:px-6 lg:px-12 font-jakarta border-b-2 border-black"
+      className="w-full bg-[#FAF6EE] py-16 px-4 sm:px-6 lg:px-12 font-brico border-b-2 border-black relative"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
@@ -150,130 +131,134 @@ const Partners = () => {
           </div>
         </div>
 
-        {/* Partners Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {/* Real Partners Cards */}
-          {filteredPartners.map((partner) => (
-            <div
-              key={partner.id}
-              className="bg-white border-2 border-black p-6 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-200 shadow-[4px_4px_0px_#000]"
-            >
-              <div>
-                {/* Header: Logo placeholder & Tier Badge */}
-                <div className="flex justify-between items-start mb-5">
-                  <div
-                    className={`px-4 py-2 border-2 border-black font-extrabold text-base sm:text-lg uppercase tracking-tight ${partner.logoBg}`}
+        {/* Loading State */}
+        {loading ? (
+          <div className="text-center py-16">
+            <div className="w-10 h-10 border-4 border-black border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-sm font-extrabold uppercase text-black">Loading partners from Supabase...</p>
+          </div>
+        ) : (
+          /* Partners Grid */
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {filteredPartners.map((partner) => (
+              <div
+                key={partner.id}
+                className="bg-white border-2 border-black p-6 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-200 shadow-[4px_4px_0px_#000]"
+              >
+                <div>
+                  <div className="flex justify-between items-start mb-5">
+                    <div
+                      className="px-4 py-2 border-2 border-black font-extrabold text-base sm:text-lg uppercase tracking-tight bg-black text-white"
+                      style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+                    >
+                      {partner.company_name}
+                    </div>
+                    <span className="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 border border-black bg-[#00ADFF] text-black">
+                      {partner.tier || "Partner"}
+                    </span>
+                  </div>
+
+                  <h3
+                    className="text-xl font-extrabold text-black mb-2"
                     style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
                   >
-                    {partner.logoText}
-                  </div>
-                  <span
-                    className={`text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 border border-black ${partner.badgeBg}`}
-                  >
-                    {partner.tier}
-                  </span>
+                    {partner.company_name}
+                  </h3>
+                  <p className="text-xs font-medium text-black/80 leading-relaxed mb-4">
+                    {partner.description || "Official partner supporting student tech empowerment at UTS 5.0."}
+                  </p>
                 </div>
 
+                <div className="pt-4 border-t-2 border-black flex justify-between items-center text-xs font-bold">
+                  <div className="flex items-center gap-1">
+                    <span className="text-black/60 uppercase text-[10px] tracking-wider font-bold">
+                      Years:
+                    </span>
+                    {(partner.years_active || ["2024"]).map((yr) => (
+                      <span
+                        key={yr}
+                        className="px-1.5 py-0.5 bg-[#FAF6EE] border border-black text-[10px] font-extrabold"
+                      >
+                        {yr}
+                      </span>
+                    ))}
+                  </div>
+                  {partner.website_url && partner.website_url !== "#" && (
+                    <a
+                      href={partner.website_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-1 text-black hover:text-[#00ADFF] transition-colors"
+                    >
+                      <span>Visit</span>
+                      <FaExternalLinkAlt className="text-[10px]" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+
+            {/* "Claim Your Spot" Sponsor Card */}
+            <div
+              onClick={() => handleOpenClaimModal("Gold Sponsor")}
+              className="bg-[#FFD100] border-2 border-dashed border-black p-6 flex flex-col justify-between items-center text-center cursor-pointer hover:-translate-y-1 hover:bg-[#FFD726] transition-all duration-200 shadow-[4px_4px_0px_#000] min-h-[260px]"
+            >
+              <div className="my-auto flex flex-col items-center">
+                <div className="w-14 h-14 bg-black text-white border-2 border-black rounded-full flex items-center justify-center mb-4 text-xl">
+                  <FaPlus />
+                </div>
+                <span className="text-xs font-extrabold uppercase tracking-widest bg-white text-black px-3 py-1 border border-black mb-2">
+                  UTS 5.0 Opportunity
+                </span>
                 <h3
-                  className="text-xl font-extrabold text-black mb-2"
+                  className="text-2xl font-extrabold text-black leading-tight mb-2"
                   style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
                 >
-                  {partner.name}
+                  Claim This Partner Spot
                 </h3>
-                <p className="text-xs font-medium text-black/80 leading-relaxed mb-4">
-                  {partner.description}
+                <p className="text-xs font-bold text-black/80 max-w-xs leading-relaxed">
+                  Connect your brand with 40,000+ top student developers, creators, and innovators.
                 </p>
               </div>
 
-              {/* Footer: Years Active & External Link */}
-              <div className="pt-4 border-t-2 border-black flex justify-between items-center text-xs font-bold">
-                <div className="flex items-center gap-1">
-                  <span className="text-black/60 uppercase text-[10px] tracking-wider font-bold">
-                    Years:
-                  </span>
-                  {partner.years.map((yr) => (
-                    <span
-                      key={yr}
-                      className="px-1.5 py-0.5 bg-[#FAF6EE] border border-black text-[10px] font-extrabold"
-                    >
-                      {yr}
-                    </span>
-                  ))}
+              <div className="w-full pt-4 border-t-2 border-black flex items-center justify-center gap-2 text-xs font-extrabold uppercase text-black">
+                <span>Partner With UTS 5.0</span>
+                <FaArrowRight />
+              </div>
+            </div>
+
+            {/* "Become a Media Partner" Card */}
+            <div
+              onClick={() => handleOpenClaimModal("Media Partner")}
+              className="bg-[#00ADFF] border-2 border-dashed border-black p-6 flex flex-col justify-between items-center text-center cursor-pointer hover:-translate-y-1 hover:bg-[#33BEFF] transition-all duration-200 shadow-[4px_4px_0px_#000] min-h-[260px]"
+            >
+              <div className="my-auto flex flex-col items-center">
+                <div className="w-14 h-14 bg-black text-white border-2 border-black rounded-full flex items-center justify-center mb-4 text-xl">
+                  <FaHandshake />
                 </div>
-                {partner.link !== "#" && (
-                  <a
-                    href={partner.link}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center gap-1 text-black hover:text-[#00ADFF] transition-colors"
-                  >
-                    <span>Visit</span>
-                    <FaExternalLinkAlt className="text-[10px]" />
-                  </a>
-                )}
+                <span className="text-xs font-extrabold uppercase tracking-widest bg-white text-black px-3 py-1 border border-black mb-2">
+                  Community &amp; Media
+                </span>
+                <h3
+                  className="text-2xl font-extrabold text-black leading-tight mb-2"
+                  style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+                >
+                  Become a Media / Tech Partner
+                </h3>
+                <p className="text-xs font-bold text-black/80 max-w-xs leading-relaxed">
+                  Co-host workshops, offer student perks, or amplify UTS 5.0 to a global audience.
+                </p>
               </div>
-            </div>
-          ))}
 
-          {/* "Claim Your Spot" Interactive Sponsor Slots */}
-          <div
-            onClick={handleMailClick}
-            className="bg-[#FFD100] border-2 border-dashed border-black p-6 flex flex-col justify-between items-center text-center cursor-pointer hover:-translate-y-1 hover:bg-[#FFD726] transition-all duration-200 shadow-[4px_4px_0px_#000] min-h-[260px]"
-          >
-            <div className="my-auto flex flex-col items-center">
-              <div className="w-14 h-14 bg-black text-white border-2 border-black rounded-full flex items-center justify-center mb-4 text-xl">
-                <FaPlus />
+              <div className="w-full pt-4 border-t-2 border-black flex items-center justify-center gap-2 text-xs font-extrabold uppercase text-black">
+                <span>Get In Touch</span>
+                <FaArrowRight />
               </div>
-              <span className="text-xs font-extrabold uppercase tracking-widest bg-white text-black px-3 py-1 border border-black mb-2">
-                UTS 5.0 Opportunity
-              </span>
-              <h3
-                className="text-2xl font-extrabold text-black leading-tight mb-2"
-                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-              >
-                Claim This Partner Spot
-              </h3>
-              <p className="text-xs font-bold text-black/80 max-w-xs leading-relaxed">
-                Connect your brand with 40,000+ top student developers, creators, and innovators.
-              </p>
-            </div>
-
-            <div className="w-full pt-4 border-t-2 border-black flex items-center justify-center gap-2 text-xs font-extrabold uppercase text-black">
-              <span>Partner With UTS 5.0</span>
-              <FaArrowRight />
             </div>
           </div>
+        )}
 
-          <div
-            onClick={handleMailClick}
-            className="bg-[#00ADFF] border-2 border-dashed border-black p-6 flex flex-col justify-between items-center text-center cursor-pointer hover:-translate-y-1 hover:bg-[#33BEFF] transition-all duration-200 shadow-[4px_4px_0px_#000] min-h-[260px]"
-          >
-            <div className="my-auto flex flex-col items-center">
-              <div className="w-14 h-14 bg-black text-white border-2 border-black rounded-full flex items-center justify-center mb-4 text-xl">
-                <FaHandshake />
-              </div>
-              <span className="text-xs font-extrabold uppercase tracking-widest bg-white text-black px-3 py-1 border border-black mb-2">
-                Community &amp; Media
-              </span>
-              <h3
-                className="text-2xl font-extrabold text-black leading-tight mb-2"
-                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-              >
-                Become a Media / Tech Partner
-              </h3>
-              <p className="text-xs font-bold text-black/80 max-w-xs leading-relaxed">
-                Co-host workshops, offer student perks, or amplify UTS 5.0 to a global audience.
-              </p>
-            </div>
-
-            <div className="w-full pt-4 border-t-2 border-black flex items-center justify-center gap-2 text-xs font-extrabold uppercase text-black">
-              <span>Get In Touch</span>
-              <FaArrowRight />
-            </div>
-          </div>
-        </div>
-
-        {/* Global Partnership Banner */}
+        {/* Banner */}
         <div className="mt-12 bg-black text-white border-2 border-black p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-[6px_6px_0px_#FF0056]">
           <div>
             <span className="text-xs font-extrabold uppercase tracking-widest text-[#FFD100] block mb-1">
@@ -286,17 +271,153 @@ const Partners = () => {
               Ready to Empower the Next Generation of Tech Leaders?
             </h3>
             <p className="text-white/80 text-xs sm:text-sm mt-1 max-w-xl font-medium">
-              Join GitHub, Paystack, Cowrywise, and Vercel as an official partner for Unilorin Tech Summit 5.0.
+              Join top companies and organizations as an official partner for Unilorin Tech Summit 5.0.
             </p>
           </div>
           <button
-            onClick={handleMailClick}
+            onClick={() => handleOpenClaimModal("Headline Sponsor")}
             className="px-8 py-4 bg-[#FF0056] text-white font-extrabold text-sm uppercase tracking-wider border-2 border-white hover:bg-[#FFD100] hover:text-black hover:border-black transition-all duration-200 shrink-0 shadow-[3px_3px_0px_#fff]"
           >
             Claim Your Spot Now ➔
           </button>
         </div>
       </div>
+
+      {/* Claim Your Spot Interactive Modal Form */}
+      {showModal && (
+        <div className="fixed inset-0 z-[9999] bg-black/70 flex items-center justify-center p-4">
+          <div className="bg-white border-4 border-black p-6 sm:p-8 max-w-lg w-full relative shadow-[8px_8px_0px_#000]">
+            <button
+              onClick={() => setShowModal(false)}
+              className="absolute top-4 right-4 w-9 h-9 bg-black text-white border-2 border-black flex items-center justify-center hover:bg-[#FF0056] transition-colors"
+              aria-label="Close modal"
+            >
+              <FaTimes />
+            </button>
+
+            {submitted ? (
+              <div className="text-center py-8">
+                <div className="w-16 h-16 bg-[#00B66C] text-white border-2 border-black rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                  <FaCheck />
+                </div>
+                <h3
+                  className="text-3xl font-extrabold text-black mb-2"
+                  style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+                >
+                  Proposal Submitted!
+                </h3>
+                <p className="text-sm font-bold text-black/80 mb-6">
+                  Thank you! Our partnerships team will reach out to you within 24 hours.
+                </p>
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="px-6 py-3 bg-black text-white border-2 border-black font-extrabold text-xs uppercase"
+                >
+                  Close Window
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleInquirySubmit} className="flex flex-col gap-4">
+                <div>
+                  <span className="text-xs font-extrabold uppercase tracking-widest text-[#FF0056] block mb-1">
+                    UTS 5.0 Partnership
+                  </span>
+                  <h3
+                    className="text-2xl sm:text-3xl font-extrabold text-black"
+                    style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+                  >
+                    Claim Your Partner Spot
+                  </h3>
+                </div>
+
+                <div>
+                  <label className="text-xs font-extrabold uppercase text-black block mb-1">
+                    Target Tier
+                  </label>
+                  <select
+                    value={targetTier}
+                    onChange={(e) => setTargetTier(e.target.value)}
+                    className="w-full p-3 bg-[#FAF6EE] border-2 border-black font-bold text-sm text-black"
+                  >
+                    <option value="Headline Sponsor">Headline Sponsor</option>
+                    <option value="Gold Sponsor">Gold Sponsor</option>
+                    <option value="Ecosystem Partner">Ecosystem Partner</option>
+                    <option value="Media Partner">Media Partner</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="text-xs font-extrabold uppercase text-black block mb-1">
+                    Company / Organization Name *
+                  </label>
+                  <input
+                    type="text"
+                    name="companyName"
+                    required
+                    value={formData.companyName}
+                    onChange={handleFormChange}
+                    placeholder="e.g. Acme Tech Corp"
+                    className="w-full p-3 bg-[#FAF6EE] border-2 border-black font-bold text-sm text-black"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-xs font-extrabold uppercase text-black block mb-1">
+                      Contact Person *
+                    </label>
+                    <input
+                      type="text"
+                      name="contactName"
+                      required
+                      value={formData.contactName}
+                      onChange={handleFormChange}
+                      placeholder="Your full name"
+                      className="w-full p-3 bg-[#FAF6EE] border-2 border-black font-bold text-sm text-black"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-extrabold uppercase text-black block mb-1">
+                      Work Email *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleFormChange}
+                      placeholder="name@company.com"
+                      className="w-full p-3 bg-[#FAF6EE] border-2 border-black font-bold text-sm text-black"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="text-xs font-extrabold uppercase text-black block mb-1">
+                    Message / Proposal Notes
+                  </label>
+                  <textarea
+                    name="message"
+                    rows="3"
+                    value={formData.message}
+                    onChange={handleFormChange}
+                    placeholder="Tell us briefly about your partnership goals..."
+                    className="w-full p-3 bg-[#FAF6EE] border-2 border-black font-bold text-sm text-black"
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="w-full py-4 bg-[#FF0056] text-white border-2 border-black font-extrabold text-sm uppercase tracking-wider hover:bg-black transition-colors shadow-[4px_4px_0px_#000]"
+                >
+                  {submitting ? "Submitting Inquiry..." : "Submit Partnership Proposal ➔"}
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
     </section>
   );
 };

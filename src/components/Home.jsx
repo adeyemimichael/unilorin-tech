@@ -25,7 +25,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#14382C]">
+    <div className="relative min-h-screen">
       {/* Interactive Top Reading Scroll Progress Bar */}
       <ScrollProgress />
 

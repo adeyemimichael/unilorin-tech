@@ -1,11 +1,54 @@
+import { useState, useEffect } from 'react';
 import { HiArrowDown } from 'react-icons/hi';
 import att1 from '../assets/images/att1.webp';
 import anu from '../assets/images/anu.webp';
 import Navbar from './Navbar';
+import { supabase } from '../lib/supabaseClient';
+
+const fallbackImages = [att1, anu];
 
 const Hero = () => {
+  const [topRightIndex, setTopRightIndex] = useState(0);
+  const [bottomLeftIndex, setBottomLeftIndex] = useState(1);
+  const [galleryPhotos, setGalleryPhotos] = useState(fallbackImages);
+
+  useEffect(() => {
+    fetchGalleryFromSupabase();
+  }, []);
+
+  const fetchGalleryFromSupabase = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('highlights_gallery')
+        .select('image_url')
+        .order('created_at', { ascending: false });
+
+      if (!error && data && data.length > 0) {
+        const urls = data.map((item) => item.image_url);
+        setGalleryPhotos(urls);
+      }
+    } catch (err) {
+      console.log('Using default hero images:', err.message);
+    }
+  };
+
+  // Cycle images every 4 seconds
+  useEffect(() => {
+    if (galleryPhotos.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setTopRightIndex((prev) => (prev + 1) % galleryPhotos.length);
+      setBottomLeftIndex((prev) => (prev + 2) % galleryPhotos.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [galleryPhotos]);
+
+  const currentTopRightImage = galleryPhotos[topRightIndex] || att1;
+  const currentBottomLeftImage = galleryPhotos[bottomLeftIndex] || anu;
+
   return (
-    <section id="hero" className="w-full bg-white min-h-screen p-3 md:p-6 lg:p-8 font-jakarta">
+    <section id="hero" className="w-full bg-white min-h-screen p-3 md:p-6 lg:p-8 font-brico">
       {/* Outer Soft Cream Rounded Container */}
       <div className="w-full bg-[#FAF6EE] rounded-[28px] sm:rounded-[36px] md:rounded-[44px] min-h-[92vh] relative overflow-hidden flex flex-col justify-between p-4 sm:p-6 md:p-10 lg:p-12 border border-black/5 shadow-2xl">
         
@@ -22,27 +65,28 @@ const Hero = () => {
           {/* Staggered Giant Headline */}
           <div className="w-full flex flex-col relative select-none">
             
-            {/* Top Line: "Unilorin" */}
-            <div className="flex items-center">
-              <h1 className="text-black font-extrabold text-5xl sm:text-7xl md:text-[130px] lg:text-[160px] xl:text-[185px] leading-[0.88] tracking-tight">
+            {/* Top Line: "Unilorin" + Floating Image Card on Desktop */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <h1 className="text-black font-extrabold text-5xl sm:text-7xl md:text-[110px] lg:text-[145px] xl:text-[170px] leading-[0.88] tracking-tight transition-all duration-500 cursor-pointer">
                 Unilorin
               </h1>
-            </div>
 
-            {/* Bottom Line: "Tech Summit" (staggered to the right) */}
-            <div className="flex items-center justify-end md:justify-center md:pl-[10%] relative">
-              <h1 className="text-black font-extrabold text-5xl sm:text-7xl md:text-[130px] lg:text-[160px] xl:text-[185px] leading-[0.88] tracking-tight">
-                Tech Summit
-              </h1>
-
-              {/* Floating Top-Right Image Card */}
-              <div className="absolute -top-12 sm:-top-20 md:-top-28 right-0 sm:right-6 md:right-12 lg:right-24 w-28 h-36 sm:w-40 sm:h-52 md:w-52 md:h-64 lg:w-60 lg:h-72 rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border-4 border-white transform rotate-3 hover:rotate-0 hover:scale-105 transition-all duration-500 z-20">
+              {/* Dynamic Floating Image Card - Clean side-by-side positioning on desktop */}
+              <div className="w-full sm:w-44 sm:h-52 md:w-56 md:h-64 lg:w-64 lg:h-72 h-44 rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border-4 border-white transform rotate-1 sm:rotate-3 hover:rotate-0 hover:scale-105 transition-all duration-500 bg-gray-200 shrink-0 mt-2 sm:mt-0">
                 <img
-                  src={att1}
+                  key={currentTopRightImage}
+                  src={currentTopRightImage}
                   alt="Unilorin Tech Summit visual"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-opacity duration-700"
                 />
               </div>
+            </div>
+
+            {/* Bottom Line: "Tech Summit" */}
+            <div className="flex items-center justify-start sm:justify-end md:justify-center md:pl-[6%] relative mt-2 sm:mt-1">
+              <h1 className="text-black font-extrabold text-5xl sm:text-7xl md:text-[110px] lg:text-[145px] xl:text-[170px] leading-[0.88] tracking-tight transition-all duration-500 cursor-pointer">
+                Tech Summit
+              </h1>
             </div>
 
           </div>
@@ -52,12 +96,13 @@ const Hero = () => {
         {/* Bottom Section: Floating Card Left, Spinning Badge Center, Tagline Right */}
         <div className="relative z-10 w-full pt-6 md:pt-10 flex flex-col md:flex-row items-center justify-between gap-8">
           
-          {/* Bottom Left Floating Image Card */}
-          <div className="w-48 h-32 sm:w-56 sm:h-36 md:w-64 md:h-44 lg:w-72 lg:h-48 rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border-4 border-white transform -rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-500 shrink-0">
+          {/* Dynamic Bottom Left Floating Image Card */}
+          <div className="w-48 h-32 sm:w-56 sm:h-36 md:w-64 md:h-44 lg:w-72 lg:h-48 rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border-4 border-white transform -rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-500 shrink-0 bg-gray-200">
             <img
-              src={anu}
+              key={currentBottomLeftImage}
+              src={currentBottomLeftImage}
               alt="Community attendee"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-opacity duration-700"
             />
           </div>
 
@@ -72,14 +117,14 @@ const Hero = () => {
                   d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
                   fill="none"
                 />
-                <text className="text-[8.5px] font-bold tracking-[1.8px] uppercase fill-[#14382C]">
+                <text className="text-[8.5px] font-bold tracking-[1.8px] uppercase fill-[#000000]">
                   <textPath href="#circlePath">
                     UNILORIN TECH SUMMIT • UNILORIN TECH SUMMIT •
                   </textPath>
                 </text>
               </svg>
 
-              {/* Inner Dark Green Circle with Down Arrow */}
+              {/* Inner Dark Circle with Down Arrow */}
               <a
                 href="#about"
                 className="absolute inset-0 m-auto w-12 h-12 md:w-14 md:h-14 bg-black rounded-full flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform duration-300"
