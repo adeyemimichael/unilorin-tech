@@ -62,10 +62,10 @@ const Navbar = () => {
             href="https://techclaritycoach.vercel.app"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center bg-[#14382C] hover:bg-[#1c4d3d] text-white rounded-full pl-6 pr-2 py-2.5 text-sm font-semibold transition-all duration-300 shadow-md group"
+            className="flex items-center bg-black hover:bg-[#1c4d3d] text-white rounded-full pl-6 pr-2 py-2.5 text-sm font-semibold transition-all duration-300 shadow-md group"
           >
             <span>Get Ticket</span>
-            <span className="ml-3 w-8 h-8 rounded-full bg-[#BFD9FB] flex items-center justify-center text-[#14382C] group-hover:translate-x-0.5 transition-transform">
+            <span className="ml-3 w-8 h-8 rounded-full bg-[#BFD9FB] flex items-center justify-center text-black group-hover:translate-x-0.5 transition-transform">
               <HiArrowRight className="w-4 h-4" />
             </span>
           </a>
@@ -112,10 +112,10 @@ const Navbar = () => {
             target="_blank"
             rel="noreferrer"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center justify-between bg-[#14382C] text-white rounded-full px-6 py-3 text-sm font-semibold"
+            className="flex items-center justify-between bg-black text-white rounded-full px-6 py-3 text-sm font-semibold"
           >
             <span>Get Ticket</span>
-            <span className="w-8 h-8 rounded-full bg-[#BFD9FB] flex items-center justify-center text-[#14382C]">
+            <span className="w-8 h-8 rounded-full bg-[#BFD9FB] flex items-center justify-center text-black">
               <HiArrowRight className="w-4 h-4" />
             </span>
           </a>

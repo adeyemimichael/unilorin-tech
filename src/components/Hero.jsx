@@ -89,6 +89,25 @@ const Hero = () => {
               </h1>
             </div>
 
+            {/* CTAs - Right under "Tech Summit" */}
+            <div className="flex flex-col sm:flex-row gap-3 items-center justify-center mt-6 md:mt-8">
+              {/* Primary CTA: Get Your Ticket */}
+              <a
+                href="#register"
+                className="w-full sm:w-auto px-8 py-4 bg-black text-white font-bold text-sm md:text-base uppercase tracking-wider border-2 border-black hover:bg-[#00ADFF] hover:border-[#00ADFF] transition-all duration-300 shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#00ADFF] hover:translate-x-[-2px] hover:translate-y-[-2px] text-center"
+              >
+                Get Your Ticket →
+              </a>
+
+              {/* Secondary CTA: Become a Sponsor */}
+              <a
+                href="#partners"
+                className="w-full sm:w-auto px-8 py-4 bg-white text-black font-bold text-sm md:text-base uppercase tracking-wider border-2 border-black hover:bg-black hover:text-white transition-all duration-300 text-center"
+              >
+                Become a Sponsor
+              </a>
+            </div>
+
           </div>
 
         </div>

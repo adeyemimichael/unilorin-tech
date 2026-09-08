@@ -67,7 +67,7 @@ const Info = () => {
   
 <div className="" ref={speakers.ref}>
   <h1 className="  text-[96px] md:text-[200px] font-brico font-medium p-0 h-[100px] md:h-[250px]    text-[#fff] text-center tabular-nums">{speakers.count}<span className="text-[60px] md:text-[120px]">+</span></h1>
-  <p className=" text-[24px] md:text-[42px] font-brico font-semibold text-center text-[#fff]">Speakers &amp; Panelists so far</p>
+  <p className=" text-[24px] md:text-[42px] font-brico font-semibold text-center text-[#fff]">Speakers in One Place</p>
 </div>
 <div className="flex justify-center  text-center">
   <div className="">
@@ -1891,8 +1891,8 @@ const Info = () => {
 
 </div>
 <div>
-  <h1 className="font-brico text-[96px] md:text-[200px] text-[#fff] font-medium text-center md:h-[250px] h-[100px]">4 </h1>
-  <h3 className="font-brico  text-[28px] md:text-[48px] text-[#fff]  font-semibold text-center ">Panelists</h3>
+  <h1 className="font-brico text-[96px] md:text-[200px] text-[#fff] font-medium text-center md:h-[250px] h-[100px]">2 </h1>
+  <h3 className="font-brico  text-[28px] md:text-[48px] text-[#fff]  font-semibold text-center ">Days</h3>
 </div>
 </div>
 <div className="flex  flex-col md:flex-row relative md:top-[500px] top-[100px] bg-transparent  ">
