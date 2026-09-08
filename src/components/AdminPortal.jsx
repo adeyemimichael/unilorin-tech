@@ -50,6 +50,16 @@ const AdminPortal = () => {
     linkedin_url: "",
   });
 
+  // Previous Speakers Form
+  const [previousSpeakerForm, setPreviousSpeakerForm] = useState({
+    name: "",
+    title: "",
+    company: "",
+    profile_url: "",
+    year: "2024",
+    display_order: 1,
+  });
+
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
@@ -139,7 +149,7 @@ const AdminPortal = () => {
     setUploading(true);
     setStatusMsg(null);
 
-    console.log("📝 Submitting Sponsor / Partner record...");
+    console.log("Submitting Sponsor / Partner record...");
 
     try {
       if (!file) {
@@ -267,6 +277,50 @@ const AdminPortal = () => {
     }
   };
 
+  const handlePreviousSpeakerSubmit = async (e) => {
+    e.preventDefault();
+    setUploading(true);
+    setStatusMsg(null);
+
+    console.log("Submitting Previous Speaker record...");
+
+    try {
+      if (!file) {
+        setStatusMsg({ type: "error", text: "Please select a speaker photo to upload." });
+        setUploading(false);
+        return;
+      }
+      const photoUrl = await uploadFileToSupabase("previous-speakers");
+
+      console.log(" Inserting record into 'previous_speakers' table...");
+
+      const { data, error } = await supabase.from("previous_speakers").insert([
+        {
+          name: previousSpeakerForm.name,
+          title: previousSpeakerForm.title,
+          company: previousSpeakerForm.company,
+          photo_url: photoUrl,
+          profile_url: previousSpeakerForm.profile_url,
+          year: parseInt(previousSpeakerForm.year),
+          display_order: parseInt(previousSpeakerForm.display_order),
+        },
+      ]).select();
+
+      if (error) throw error;
+
+      console.log(" SUCCESS! Previous speaker record inserted:", data);
+      setStatusMsg({ type: "success", text: "Previous speaker added successfully!" });
+      setFile(null);
+      setPreview(null);
+      setPreviousSpeakerForm({ name: "", title: "", company: "", profile_url: "", year: "2024", display_order: 1 });
+    } catch (err) {
+      console.error(" Failed to insert previous speaker record:", err.message);
+      setStatusMsg({ type: "error", text: err.message || "Failed to add previous speaker." });
+    } finally {
+      setUploading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#FAF6EE] font-brico flex flex-col justify-between">
       <div>
@@ -288,7 +342,7 @@ const AdminPortal = () => {
               Content &amp; Media Admin
             </h1>
             <p className="text-black/80 font-medium text-sm mt-2">
-              Upload photos, add sponsors, manage speakers, and update team details directly into Supabase.
+              Upload photos, add sponsors, manage speakers, and update team details for the website.
             </p>
 
             {/* Admin Tabs */}
@@ -297,6 +351,7 @@ const AdminPortal = () => {
                 { id: "highlights", label: " Add Highlight Photo" },
                 { id: "sponsors", label: " Add Sponsor / Partner" },
                 { id: "speakers", label: " Add Speaker" },
+                { id: "previousSpeakers", label: " Add Previous Speaker" },
                 { id: "team", label: " Add Team Member" },
               ].map((tab) => (
                 <button
@@ -407,7 +462,7 @@ const AdminPortal = () => {
                   disabled={uploading}
                   className="w-full py-4 bg-black text-white font-extrabold text-sm uppercase tracking-wider border-2 border-black hover:bg-[#FF0056] transition-colors shadow-[4px_4px_0px_#000] mt-2"
                 >
-                  {uploading ? "Uploading to Supabase..." : "Publish Highlight Photo ➔"}
+                  {uploading ? "Uploading photo..." : "Publish Highlight Photo ➔"}
                 </button>
               </form>
             )}
@@ -453,12 +508,26 @@ const AdminPortal = () => {
                   </div>
                 </div>
 
+                <div>
+                  <label className="text-xs font-extrabold uppercase text-black block mb-1">Company Description</label>
+                  <textarea
+                    rows="3"
+                    value={sponsorForm.description}
+                    onChange={(e) => setSponsorForm({ ...sponsorForm, description: e.target.value })}
+                    placeholder="Brief description of the company and their support for UTS..."
+                    className="w-full p-3 bg-[#FAF6EE] border-2 border-black font-bold text-sm text-black"
+                  ></textarea>
+                  <p className="text-[10px] text-black/60 mt-1 font-medium">
+                    This will be displayed on the partner card (optional but recommended)
+                  </p>
+                </div>
+
                 <button
                   type="submit"
                   disabled={uploading}
                   className="w-full py-4 bg-black text-white font-extrabold text-sm uppercase tracking-wider border-2 border-black hover:bg-[#00B66C] transition-colors shadow-[4px_4px_0px_#000] mt-2"
                 >
-                  {uploading ? "Saving to Supabase..." : "Add Partner / Sponsor ➔"}
+                  {uploading ? "Saving sponsor..." : "Add Partner / Sponsor ➔"}
                 </button>
               </form>
             )}
@@ -609,6 +678,114 @@ const AdminPortal = () => {
                   className="w-full py-4 bg-black text-white font-extrabold text-sm uppercase tracking-wider border-2 border-black hover:bg-[#FFD100] hover:text-black transition-colors shadow-[4px_4px_0px_#000] mt-2"
                 >
                   {uploading ? "Saving Team Member..." : "Add Team Member ➔"}
+                </button>
+              </form>
+            )}
+
+            {/* TAB 5: PREVIOUS SPEAKERS FORM */}
+            {activeTab === "previousSpeakers" && (
+              <form onSubmit={handlePreviousSpeakerSubmit} className="flex flex-col gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-xs font-extrabold uppercase text-black block mb-1">Full Name *</label>
+                    <input
+                      type="text"
+                      required
+                      value={previousSpeakerForm.name}
+                      onChange={(e) => setPreviousSpeakerForm({ ...previousSpeakerForm, name: e.target.value })}
+                      placeholder="e.g. Olumide Soyombo"
+                      className="w-full p-3 bg-[#FAF6EE] border-2 border-black font-bold text-sm text-black"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-extrabold uppercase text-black block mb-1">Job Title *</label>
+                    <input
+                      type="text"
+                      required
+                      value={previousSpeakerForm.title}
+                      onChange={(e) => setPreviousSpeakerForm({ ...previousSpeakerForm, title: e.target.value })}
+                      placeholder="e.g. Co-Founder & Partner"
+                      className="w-full p-3 bg-[#FAF6EE] border-2 border-black font-bold text-sm text-black"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-xs font-extrabold uppercase text-black block mb-1">Company / Organization *</label>
+                    <input
+                      type="text"
+                      required
+                      value={previousSpeakerForm.company}
+                      onChange={(e) => setPreviousSpeakerForm({ ...previousSpeakerForm, company: e.target.value })}
+                      placeholder="e.g. Voltron Capital"
+                      className="w-full p-3 bg-[#FAF6EE] border-2 border-black font-bold text-sm text-black"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-extrabold uppercase text-black block mb-1">UTS Year / Edition *</label>
+                    <select
+                      value={previousSpeakerForm.year}
+                      onChange={(e) => setPreviousSpeakerForm({ ...previousSpeakerForm, year: e.target.value })}
+                      className="w-full p-3 bg-[#FAF6EE] border-2 border-black font-bold text-sm text-black"
+                    >
+                      <option value="2020">UTS 1.0 (2020)</option>
+                      <option value="2021">UTS 2.0 (2021)</option>
+                      <option value="2022">UTS 3.0 (2022)</option>
+                      <option value="2023">UTS 4.0 (2023)</option>
+                      <option value="2024">UTS 5.0 (2024)</option>
+                      <option value="2025">UTS 6.0 (2025)</option>
+                      <option value="2026">UTS 7.0 (2026)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="text-xs font-extrabold uppercase text-black block mb-1">Profile URL (LinkedIn/Twitter)</label>
+                  <input
+                    type="url"
+                    value={previousSpeakerForm.profile_url}
+                    onChange={(e) => setPreviousSpeakerForm({ ...previousSpeakerForm, profile_url: e.target.value })}
+                    placeholder="https://linkedin.com/in/speaker-name"
+                    className="w-full p-3 bg-[#FAF6EE] border-2 border-black font-bold text-sm text-black"
+                  />
+                  <p className="text-[10px] text-black/60 mt-1 font-medium">
+                    Add LinkedIn, Twitter, or personal website URL for "view profile" link
+                  </p>
+                </div>
+
+                <div>
+                  <label className="text-xs font-extrabold uppercase text-black block mb-1">Display Order</label>
+                  <input
+                    type="number"
+                    min="1"
+                    value={previousSpeakerForm.display_order}
+                    onChange={(e) => setPreviousSpeakerForm({ ...previousSpeakerForm, display_order: e.target.value })}
+                    placeholder="1"
+                    className="w-full p-3 bg-[#FAF6EE] border-2 border-black font-bold text-sm text-black"
+                  />
+                  <p className="text-[10px] text-black/60 mt-1 font-medium">
+                    Lower numbers appear first (1, 2, 3...). Use sequential numbers for easy reordering.
+                  </p>
+                </div>
+
+                <div className="bg-[#FFD100]/10  border-[#FFD100] p-4 mt-2">
+                  <p className="text-xs font-bold text-black uppercase mb-2">Photo Guidelines:</p>
+                  <ul className="text-[11px] text-black/80 space-y-1 font-medium">
+                    <li>• Square photos work best (1:1 aspect ratio)</li>
+                    <li>• Minimum size: 600x600px</li>
+                    <li>• Professional headshot preferred</li>
+                    <li>• Clean background (white/neutral)</li>
+                    <li>• High resolution, well-lit</li>
+                  </ul>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={uploading}
+                  className="w-full py-4 bg-black text-white font-extrabold text-sm uppercase tracking-wider border-2 border-black hover:bg-[#973AE0] transition-colors shadow-[4px_4px_0px_#000] mt-2"
+                >
+                  {uploading ? "Adding Previous Speaker..." : "Add Previous Speaker ➔"}
                 </button>
               </form>
             )}

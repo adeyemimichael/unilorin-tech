@@ -27,17 +27,17 @@ const About = () => {
           
           {/* Left Column: Extra Large Display Graphic & 5.0 Badge */}
           <div className="lg:col-span-6 flex justify-center lg:justify-start" data-aos="fade-right" data-aos-delay="200">
-            <div className="relative inline-block select-none py-4">
+            <div className="relative inline-block select-none py-4 pr-16 sm:pr-20 md:pr-24">
               
               {/* Massive Oversized Display Heading */}
               <div className="flex flex-col leading-[0.82] font-extrabold text-black text-6xl sm:text-7xl md:text-8xl lg:text-[96px] xl:text-[112px] tracking-tight">
                 <span>THE HALF</span>
                 <span>DECADE</span>
-                <span className="text-black">EVENT.</span>
+                <span className="text-black">SUMMIT.</span>
               </div>
 
-              {/* Pink Starburst Badge Overlay ("5.0 / 5TH") */}
-              <div className="absolute -top-6 right-[-20px] sm:right-[-35px] w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-[#FF0056] text-white flex items-center justify-center font-extrabold text-2xl sm:text-3xl md:text-4xl rounded-full border-4 border-white shadow-2xl animate-pop-bounce cursor-pointer">
+              {/* Pink Starburst Badge Overlay ("5.0 / 5TH") - Positioned to not overlap text */}
+              <div className="absolute top-0 right-0 w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-[#FF0056] text-white flex items-center justify-center font-extrabold text-2xl sm:text-3xl md:text-4xl rounded-full border-4 border-white shadow-2xl animate-pop-bounce cursor-pointer">
                 <div className="relative z-10 flex flex-col items-center leading-none">
                   <span>5.0</span>
                   <span className="text-[10px] sm:text-xs font-bold tracking-widest uppercase mt-0.5 opacity-90">YEARS</span>
@@ -50,29 +50,41 @@ const About = () => {
             </div>
           </div>
 
-          {/* Right Column: Articulated Copywriting emphasizing 5-Year Milestone */}
+          {/* Right Column: UTS 2027 Half-Decade Story */}
           <div className="lg:col-span-6 flex flex-col gap-6 text-[#14382C] text-base md:text-lg leading-relaxed font-normal" data-aos="fade-left" data-aos-delay="250">
             
-            <p>
-              <strong className="font-bold text-[#14382C]">Celebrating 5 years of impact: UTS 5.0 (The Half Decade Event).</strong> This landmark edition marks five incredible years of empowering student innovators. This year, <strong className="font-bold text-[#14382C]">laptops and tech grants</strong> will be awarded to selected top-performing tech talents across different categories.
+            <p className="text-xl md:text-2xl font-bold text-[#14382C] leading-snug">
+              Five years of building. One community. A new chapter.
             </p>
 
             <p>
-              We are also introducing the <strong className="font-bold text-[#14382C]">5th Anniversary Mentorship & Skill Cohort</strong>. Through this fund, <strong className="font-bold text-[#14382C]">promising beginners</strong> will receive fully funded tech training, mentorship from industry executives, <strong className="font-bold text-[#14382C]">plus cash support</strong> to launch their tech careers.
+              For five years, Unilorin Tech Summit has brought <strong className="font-bold text-[#14382C]">students, builders, creators, founders, innovators and technology enthusiasts</strong> together to learn, connect and explore what is possible.
             </p>
 
             <p>
-              <strong className="font-bold text-[#14382C]">To mark our half-decade milestone, UTS 5.0 features two structured tracks:</strong> the <strong className="font-bold text-[#14382C]">Student Developer Track</strong> and the <strong className="font-bold text-[#14382C]">Innovation & Business Track</strong>.
+              <strong className="font-bold text-[#14382C]">Now, we are marking five years.</strong>
+            </p>
+
+            <p>
+              Not just with another summit, but with a <strong className="font-bold text-[#14382C]">celebration of the people, ideas and community</strong> that have shaped UTS and the future we are building together.
             </p>
 
             {/* Read More Collapsible Section */}
             {isExpanded && (
               <div className="pt-2 flex flex-col gap-4 text-[#14382C]/90 text-base border-t border-black/10 mt-2 animate-in fade-in duration-300">
                 <p>
-                  Hosted right within the vibrant heart of University of Ilorin — home to over 40,000+ students — Unilorin Tech Summit converges Founders, Business Leaders, Engineers, and Enthusiasts for Nigeria's premier campus tech fiesta.
+                  What started as a student-driven initiative has grown into a community that continues to bring technology closer to students across the University of Ilorin — home to over 40,000+ students.
                 </p>
                 <p>
-                  Our half-decade mission remains steadfast: to equip young talents with the skills, network, and confidence to build solutions that scale globally.
+                  <strong className="font-bold text-[#14382C]">The Half-Decade Summit</strong> is a moment to look back at what we have built, celebrate the people who have been part of the journey, and look forward to what comes next.
+                </p>
+                <p className="text-sm italic">
+                  2023 → 2024 → 2025 → 2026 → 2027
+                </p>
+                <p className="font-medium">
+                  Five years of ideas. Five years of people. Five years of building.
+                  <br />
+                  <strong className="text-[#FF0056]">And this is only the beginning.</strong>
                 </p>
               </div>
             )}
@@ -84,7 +96,7 @@ const About = () => {
                 onClick={() => setIsExpanded(!isExpanded)}
                 className="inline-flex items-center gap-2 bg-[#14382C] text-white hover:bg-[#1c4d3d] font-semibold text-sm px-6 py-3 rounded-full transition-all duration-300 shadow-md"
               >
-                <span>{isExpanded ? 'Read Less' : 'Read More About The 5th Edition'}</span>
+                <span>{isExpanded ? 'Read Less' : 'Read More About The Half-Decade Summit'}</span>
               </button>
             </div>
 

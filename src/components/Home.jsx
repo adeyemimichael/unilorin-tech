@@ -13,6 +13,7 @@ import Preloader from './Preloader';
 import ScrollProgress from './ScrollProgress';
 import Tracks from './Tracks';
 import Speakers from './Speakers';
+import PreviousSpeakers from './PreviousSpeakers';
 import Testimonials from './Testimonials';
 
 function Home() {
@@ -38,6 +39,7 @@ function Home() {
       <Info />
       <Tracks />
       <Speakers />
+      <PreviousSpeakers />
       <Highlight />
       <Testimonials />
       <Partners />

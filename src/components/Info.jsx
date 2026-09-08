@@ -39,7 +39,7 @@ function useCountUp(target, duration = 1800) {
 const Info = () => {
   const width = "100vw";
   const speakers = useCountUp(10, 1600);
-  const youngMinds = useCountUp(2000, 2200);
+  const youngMinds = useCountUp(5000, 2200);
 
   return (
     <div className="mb-0 pb-0">

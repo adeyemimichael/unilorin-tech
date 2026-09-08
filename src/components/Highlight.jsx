@@ -175,7 +175,7 @@ const Highlight = () => {
       {loading ? (
         <div className="text-center py-16">
           <div className="w-10 h-10 border-4 border-black border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-sm font-extrabold uppercase text-black">Loading gallery photos from Supabase...</p>
+          <p className="text-sm font-extrabold uppercase text-black">Loading gallery...</p>
         </div>
       ) : photos.length === 0 ? (
         <div className="text-center py-12 bg-white border-2 border-black max-w-md mx-4 sm:mx-auto p-6 sm:p-8 shadow-[4px_4px_0px_#000]">

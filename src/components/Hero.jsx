@@ -137,11 +137,19 @@ const Hero = () => {
 
           {/* Bottom Right Slogan / Tagline Text */}
           <div className="max-w-xs md:max-w-sm text-center md:text-left">
-            <h2 className="text-black font-extrabold text-lg md:text-xl lg:text-2xl leading-snug">
-              Meet, connect and get inspired in one location.
+            {/* NEW: Community Message Lead-in */}
+            <p className="text-black  font-bold text-[11px] md:text-xs uppercase tracking-wider mb-2">
+              More Than an Event
+            </p>
+            
+            {/* Main Tagline */}
+            <h2 className="text-black font-extrabold text-lg md:text-xl lg:text-2xl leading-snug mb-3">
+              A community of builders and enthusiasts from all fields, driven by technology.
             </h2>
-            <p className="text-black/75 text-xs md:text-sm mt-2 font-medium leading-relaxed">
-              The premier student tech extravaganza at the University of Ilorin equipping 40,000+ students for the global tech ecosystem.
+            
+            {/* Supporting Description */}
+            <p className="text-black/75 text-xs md:text-sm font-medium leading-relaxed">
+              Meet, connect and get inspired at Nigeria's premier student tech event—equipping 40,000+ students for the global tech ecosystem.
             </p>
           </div>
 

@@ -90,7 +90,7 @@ const Speakers = () => {
       {loading ? (
         <div className="text-center py-16">
           <div className="w-10 h-10 border-4 border-black border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-sm font-extrabold uppercase text-black">Loading speaker lineup from Supabase...</p>
+          <p className="text-sm font-extrabold uppercase text-black">Loading speakers...</p>
         </div>
       ) : filteredSpeakers.length === 0 ? (
         <div className="text-center py-12 bg-white border-2 border-black max-w-md mx-auto p-8 shadow-[4px_4px_0px_#000]">
