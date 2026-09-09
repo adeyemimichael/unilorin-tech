@@ -56,21 +56,21 @@ const Navbar = () => {
                   <a
                     href={link.href}
                     onClick={(e) => handleContactClick(e, link)}
-                    className="text-[#14382C] hover:text-emerald-700 font-semibold text-sm transition-colors duration-200 cursor-pointer"
+                    className="text-black hover:text-black/70 font-semibold text-sm transition-colors duration-200 cursor-pointer"
                   >
                     {link.name}
                   </a>
                 ) : link.href.startsWith("/") && !link.href.includes("#") ? (
                   <Link
                     to={link.href}
-                    className="text-[#14382C] hover:text-emerald-700 font-semibold text-sm transition-colors duration-200"
+                    className="text-black hover:text-black/70 font-semibold text-sm transition-colors duration-200"
                   >
                     {link.name}
                   </Link>
                 ) : (
                   <a
                     href={link.href}
-                    className="text-[#14382C] hover:text-emerald-700 font-semibold text-sm transition-colors duration-200"
+                    className="text-black hover:text-black/70 font-semibold text-sm transition-colors duration-200"
                   >
                     {link.name}
                   </a>
@@ -97,7 +97,7 @@ const Navbar = () => {
         {/* Mobile Hamburger Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden p-2.5 rounded-full bg-white text-[#14382C] shadow-sm border border-black/5"
+          className="lg:hidden p-2.5 rounded-full bg-white text-black shadow-sm border border-black/5"
           aria-label="Toggle Menu"
         >
           {mobileMenuOpen ? <AiOutlineClose size={22} /> : <AiOutlineMenu size={22} />}
@@ -114,7 +114,7 @@ const Navbar = () => {
                   <a
                     href={link.href}
                     onClick={(e) => handleContactClick(e, link)}
-                    className="block py-2 text-[#14382C] hover:text-emerald-700 font-semibold text-base cursor-pointer"
+                    className="block py-2 text-black hover:text-black/70 font-semibold text-base cursor-pointer"
                   >
                     {link.name}
                   </a>
@@ -122,7 +122,7 @@ const Navbar = () => {
                   <Link
                     to={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block py-2 text-[#14382C] hover:text-emerald-700 font-semibold text-base"
+                    className="block py-2 text-black hover:text-black/70 font-semibold text-base"
                   >
                     {link.name}
                   </Link>
@@ -130,7 +130,7 @@ const Navbar = () => {
                   <a
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block py-2 text-[#14382C] hover:text-emerald-700 font-semibold text-base"
+                    className="block py-2 text-black hover:text-black/70 font-semibold text-base"
                   >
                     {link.name}
                   </a>

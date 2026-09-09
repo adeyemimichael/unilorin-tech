@@ -51,32 +51,32 @@ const About = () => {
           </div>
 
           {/* Right Column: UTS 2027 Half-Decade Story */}
-          <div className="lg:col-span-6 flex flex-col gap-6 text-[#14382C] text-base md:text-lg leading-relaxed font-normal" data-aos="fade-left" data-aos-delay="250">
+          <div className="lg:col-span-6 flex flex-col gap-6 text-black text-base md:text-lg leading-relaxed font-normal" data-aos="fade-left" data-aos-delay="250">
             
-            <p className="text-xl md:text-2xl font-bold text-[#14382C] leading-snug">
+            <p className="text-xl md:text-2xl font-bold text-black leading-snug">
               Five years of building. One community. A new chapter.
             </p>
 
             <p>
-              For five years, Unilorin Tech Summit has brought <strong className="font-bold text-[#14382C]">students, builders, creators, founders, innovators and technology enthusiasts</strong> together to learn, connect and explore what is possible.
+              For five years, Unilorin Tech Summit has brought <strong className="font-bold text-black">students, builders, creators, founders, innovators and technology enthusiasts</strong> together to learn, connect and explore what is possible.
             </p>
 
             <p>
-              <strong className="font-bold text-[#14382C]">Now, we are marking five years.</strong>
+              <strong className="font-bold text-black">Now, we are marking five years.</strong>
             </p>
 
             <p>
-              Not just with another summit, but with a <strong className="font-bold text-[#14382C]">celebration of the people, ideas and community</strong> that have shaped UTS and the future we are building together.
+              Not just with another summit, but with a <strong className="font-bold text-black">celebration of the people, ideas and community</strong> that have shaped UTS and the future we are building together.
             </p>
 
             {/* Read More Collapsible Section */}
             {isExpanded && (
-              <div className="pt-2 flex flex-col gap-4 text-[#14382C]/90 text-base border-t border-black/10 mt-2 animate-in fade-in duration-300">
+              <div className="pt-2 flex flex-col gap-4 text-black/90 text-base border-t border-black/10 mt-2 animate-in fade-in duration-300">
                 <p>
                   What started as a student-driven initiative has grown into a community that continues to bring technology closer to students across the University of Ilorin — home to over 40,000+ students.
                 </p>
                 <p>
-                  <strong className="font-bold text-[#14382C]">The Half-Decade Summit</strong> is a moment to look back at what we have built, celebrate the people who have been part of the journey, and look forward to what comes next.
+                  <strong className="font-bold text-black">The Half-Decade Summit</strong> is a moment to look back at what we have built, celebrate the people who have been part of the journey, and look forward to what comes next.
                 </p>
                 <p className="text-sm italic">
                   2023 → 2024 → 2025 → 2026 → 2027
@@ -94,7 +94,7 @@ const About = () => {
               <button
                 type="button"
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="inline-flex items-center gap-2 bg-[#14382C] text-white hover:bg-[#1c4d3d] font-semibold text-sm px-6 py-3 rounded-full transition-all duration-300 shadow-md"
+                className="inline-flex items-center gap-2 bg-black text-white hover:bg-black/80 font-semibold text-sm px-6 py-3 rounded-full transition-all duration-300 shadow-md"
               >
                 <span>{isExpanded ? 'Read Less' : 'Read More About The Half-Decade Summit'}</span>
               </button>
