@@ -1,5 +1,6 @@
 import { TfiArrowRight } from "react-icons/tfi";
 import { useState, useEffect, useRef } from "react";
+import Toast from './Toast';
 
 function useCountUp(target, duration = 1800) {
   const [count, setCount] = useState(0);
@@ -40,6 +41,12 @@ const Info = () => {
   const width = "100vw";
   const speakers = useCountUp(10, 1600);
   const youngMinds = useCountUp(5000, 2200);
+  const [showToast, setShowToast] = useState(false);
+
+  const handleTicketClick = (e) => {
+    e.preventDefault();
+    setShowToast(true);
+  };
 
   return (
     <div className="mb-0 pb-0">
@@ -53,8 +60,9 @@ const Info = () => {
         </p>
       </div>
       <a
-        href="#ticket"
-        className="group flex items-center gap-3 border-2 border-white text-white px-6 py-3 font-brico font-semibold text-[16px] hover:bg-white hover:text-[#00ADFF] transition-all duration-300"
+        href="#"
+        onClick={handleTicketClick}
+        className="group flex items-center gap-3 border-2 border-white text-white px-6 py-3 font-brico font-semibold text-[16px] hover:bg-white hover:text-[#00ADFF] transition-all duration-300 cursor-pointer"
         data-aos="fade-left"
         data-aos-delay="30"
       >
@@ -1938,8 +1946,15 @@ const Info = () => {
   
 </div>
 </div> 
+      {/* Toast Notification */}
+      {showToast && (
+        <Toast 
+          message="🎟️ Tickets coming soon! Stay tuned for updates." 
+          onClose={() => setShowToast(false)}
+        />
+      )}
     </div>
-  )
+  );
 }
 
 export default Info

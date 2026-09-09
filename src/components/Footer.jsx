@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const handleMailClick = () => {
-    const email = "Contact@unilorintechsummit.org";
+    const email = "partnerships@unilorintechsummit.org";
     const subject = " ";
     const body = "";
 
@@ -18,16 +18,55 @@ const Footer = () => {
   return (
     <div id="footer">  {/* footer section */}
     <footer className="bg-[#322355] w-screen object-contain">
-<div className=" flex justify-between items-center flex-start md:flex-row flex-col ">
-<h1 className="md:p-10 p-8 text-[#D5B0F3] font-brico font-bold  text-[16px] md:text-[16px] ">Powered by Unilorin Christian Union</h1>
-<ul className="flex justify-between gap-[20px] p-10 mx-10 text-[#D5B0F3] font-brico font-semibold ">
-  
-<Link to='https://www.linkedin.com/company/unilorin-tech-summit/' target="_blank" rel="noreferrer" ><FaLinkedinIn size={24}  className="hover:text-[#fff] cursor-pointer"/></Link>
-<Link to='https://instagram.com/unilorintechsummit/' target="_blank" rel="noreferrer" ><FiInstagram size={24} className="hover:text-[#fff] cursor-pointer"/></Link>
-<Link to='https://twitter.com/Uiltechsummit' target="_blank" rel="noreferrer" ><FiTwitter size={24} className="hover:text-[#fff] cursor-pointer"/></Link>
-<Link onClick={handleMailClick} target="_blank" rel="noreferrer" ><AiOutlineMail  size={24} className="hover:text-[#fff] cursor-pointer"/></Link>
-</ul>
-</div>
+      
+      {/* Contact Section */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-12 pb-8">
+        <div className="text-center mb-8">
+          <h3 className="text-2xl md:text-3xl font-extrabold text-[#D5B0F3] mb-3 font-brico uppercase">
+            Get in Touch
+          </h3>
+          <p className="text-[#D5B0F3]/80 font-medium text-sm md:text-base mb-6">
+            Have questions or want to partner with us? We'd love to hear from you!
+          </p>
+          <a
+            href="mailto:partnerships@unilorintechsummit.org"
+            className="inline-flex items-center gap-3 bg-[#00ADFF] text-white font-bold text-sm md:text-base px-8 py-4 border-2 border-white hover:bg-[#FFD100] hover:text-black transition-all duration-300 shadow-[4px_4px_0px_#fff] hover:shadow-[6px_6px_0px_#fff] hover:translate-x-[-2px] hover:translate-y-[-2px] uppercase tracking-wider"
+          >
+            <AiOutlineMail size={20} />
+            partnerships@unilorintechsummit.org
+          </a>
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div className="border-t-2 border-[#D5B0F3]/20"></div>
+
+      <div className="flex justify-between items-center flex-start md:flex-row flex-col">
+        <div className="flex items-center gap-3 md:p-10 p-8">
+          <img 
+            src="/cu.PNG" 
+            alt="Unilorin Christian Union" 
+            className="w-10 h-10 md:w-12 md:h-12 object-contain"
+          />
+          <h1 className="text-[#D5B0F3] font-brico font-bold text-[16px] md:text-[16px]">
+            Powered by Unilorin Christian Union
+          </h1>
+        </div>
+        <ul className="flex justify-between gap-[20px] p-10 mx-10 text-[#D5B0F3] font-brico font-semibold">
+          <Link to='https://www.linkedin.com/company/unilorin-tech-summit/' target="_blank" rel="noreferrer">
+            <FaLinkedinIn size={24} className="hover:text-[#fff] cursor-pointer"/>
+          </Link>
+          <Link to='https://instagram.com/unilorintechsummit/' target="_blank" rel="noreferrer">
+            <FiInstagram size={24} className="hover:text-[#fff] cursor-pointer"/>
+          </Link>
+          <Link to='https://twitter.com/Uiltechsummit' target="_blank" rel="noreferrer">
+            <FiTwitter size={24} className="hover:text-[#fff] cursor-pointer"/>
+          </Link>
+          <Link onClick={handleMailClick} target="_blank" rel="noreferrer">
+            <AiOutlineMail size={24} className="hover:text-[#fff] cursor-pointer"/>
+          </Link>
+        </ul>
+      </div>
     <div className="relative  md:top-[30px] top-[10px] flex  items-center content-fit w-screen md:h-[410px] bottom-[100px] p-2 ">
 <svg width="1729" height="" viewBox="0 0 1729 411" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[100%] overflow-hidden ">
 <g clipPath="url(#clip0_170_2249)">

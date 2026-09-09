@@ -4,6 +4,7 @@ import att1 from '../assets/images/att1.webp';
 import anu from '../assets/images/anu.webp';
 import Navbar from './Navbar';
 import { supabase } from '../lib/supabaseClient';
+import Toast from './Toast';
 
 const fallbackImages = [att1, anu];
 
@@ -11,6 +12,12 @@ const Hero = () => {
   const [topRightIndex, setTopRightIndex] = useState(0);
   const [bottomLeftIndex, setBottomLeftIndex] = useState(1);
   const [galleryPhotos, setGalleryPhotos] = useState(fallbackImages);
+  const [showToast, setShowToast] = useState(false);
+
+  const handleTicketClick = (e) => {
+    e.preventDefault();
+    setShowToast(true);
+  };
 
   useEffect(() => {
     fetchGalleryFromSupabase();
@@ -93,8 +100,9 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-3 items-center justify-center mt-6 md:mt-8">
               {/* Primary CTA: Get Your Ticket */}
               <a
-                href="#register"
-                className="w-full sm:w-auto px-8 py-4 bg-black text-white font-bold text-sm md:text-base uppercase tracking-wider border-2 border-black hover:bg-[#00ADFF] hover:border-[#00ADFF] transition-all duration-300 shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#00ADFF] hover:translate-x-[-2px] hover:translate-y-[-2px] text-center"
+                href="#"
+                onClick={handleTicketClick}
+                className="w-full sm:w-auto px-8 py-4 bg-black text-white font-bold text-sm md:text-base uppercase tracking-wider border-2 border-black hover:bg-[#00ADFF] hover:border-[#00ADFF] transition-all duration-300 shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#00ADFF] hover:translate-x-[-2px] hover:translate-y-[-2px] text-center cursor-pointer"
               >
                 Get Your Ticket →
               </a>
@@ -175,6 +183,14 @@ const Hero = () => {
         </div>
 
       </div>
+
+      {/* Toast Notification */}
+      {showToast && (
+        <Toast 
+          message="🎟️ Tickets coming soon! Stay tuned for updates." 
+          onClose={() => setShowToast(false)}
+        />
+      )}
     </section>
   );
 };
