@@ -55,6 +55,7 @@ const AdminPortal = () => {
     name: "",
     title: "",
     company: "",
+    bio: "",
     profile_url: "",
     year: "2024",
     display_order: 1,
@@ -290,7 +291,7 @@ const AdminPortal = () => {
         setUploading(false);
         return;
       }
-      const photoUrl = await uploadFileToSupabase("previous-speakers");
+      const photoUrl = await uploadFileToSupabase("avatars");
 
       console.log(" Inserting record into 'previous_speakers' table...");
 
@@ -299,6 +300,7 @@ const AdminPortal = () => {
           name: previousSpeakerForm.name,
           title: previousSpeakerForm.title,
           company: previousSpeakerForm.company,
+          bio: previousSpeakerForm.bio,
           photo_url: photoUrl,
           profile_url: previousSpeakerForm.profile_url,
           year: parseInt(previousSpeakerForm.year),
@@ -312,7 +314,7 @@ const AdminPortal = () => {
       setStatusMsg({ type: "success", text: "Previous speaker added successfully!" });
       setFile(null);
       setPreview(null);
-      setPreviousSpeakerForm({ name: "", title: "", company: "", profile_url: "", year: "2024", display_order: 1 });
+      setPreviousSpeakerForm({ name: "", title: "", company: "", bio: "", profile_url: "", year: "2024", display_order: 1 });
     } catch (err) {
       console.error(" Failed to insert previous speaker record:", err.message);
       setStatusMsg({ type: "error", text: err.message || "Failed to add previous speaker." });
@@ -738,6 +740,20 @@ const AdminPortal = () => {
                       <option value="2026">UTS 7.0 (2026)</option>
                     </select>
                   </div>
+                </div>
+
+                <div>
+                  <label className="text-xs font-extrabold uppercase text-black block mb-1">Speaker Bio</label>
+                  <textarea
+                    value={previousSpeakerForm.bio}
+                    onChange={(e) => setPreviousSpeakerForm({ ...previousSpeakerForm, bio: e.target.value })}
+                    placeholder="Detailed biography about the speaker's background, achievements, expertise, notable projects, and contributions to the tech ecosystem. You can write multiple paragraphs."
+                    rows="8"
+                    className="w-full p-3 bg-[#FAF6EE] border-2 border-black font-bold text-sm text-black resize-y"
+                  />
+                  <p className="text-[10px] text-black/60 mt-1 font-medium">
+                    Write a comprehensive bio that will be shown when users click to view more details. Can include multiple paragraphs.
+                  </p>
                 </div>
 
                 <div>

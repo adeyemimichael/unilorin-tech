@@ -27,20 +27,20 @@ const About = () => {
           
           {/* Left Column: Extra Large Display Graphic & 5.0 Badge */}
           <div className="lg:col-span-6 flex justify-center lg:justify-start" data-aos="fade-right" data-aos-delay="200">
-            <div className="relative inline-block select-none py-4 pr-16 sm:pr-20 md:pr-24">
+            <div className="relative inline-block select-none py-4">
               
               {/* Massive Oversized Display Heading */}
-              <div className="flex flex-col leading-[0.82] font-extrabold text-black text-6xl sm:text-7xl md:text-8xl lg:text-[96px] xl:text-[112px] tracking-tight">
+              <div className="flex flex-col leading-[0.82] font-extrabold text-black text-6xl sm:text-7xl md:text-8xl lg:text-[96px] xl:text-[112px] tracking-tight pr-20 sm:pr-24 md:pr-28">
                 <span>THE HALF</span>
                 <span>DECADE</span>
                 <span className="text-black">SUMMIT.</span>
               </div>
 
-              {/* Pink Starburst Badge Overlay ("5.0 / 5TH") - Positioned to not overlap text */}
-              <div className="absolute top-0 right-0 w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-[#FF0056] text-white flex items-center justify-center font-extrabold text-2xl sm:text-3xl md:text-4xl rounded-full border-4 border-white shadow-2xl animate-pop-bounce cursor-pointer">
+              {/* Pink Starburst Badge Overlay ("5.0 / 5TH") - Better responsive positioning */}
+              <div className="absolute -top-2 -right-2 sm:top-0 sm:right-0 md:top-4 md:right-4 w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 bg-[#FF0056] text-white flex items-center justify-center font-extrabold text-xl sm:text-2xl md:text-3xl lg:text-4xl rounded-full border-4 border-white shadow-2xl animate-pop-bounce cursor-pointer">
                 <div className="relative z-10 flex flex-col items-center leading-none">
                   <span>5.0</span>
-                  <span className="text-[10px] sm:text-xs font-bold tracking-widest uppercase mt-0.5 opacity-90">YEARS</span>
+                  <span className="text-[8px] sm:text-[10px] md:text-xs font-bold tracking-widest uppercase mt-0.5 opacity-90">YEARS</span>
                 </div>
                 {/* Decorative Starburst Rings */}
                 <div className="absolute inset-0 bg-[#00ADFF] rounded-full transform rotate-45 -z-0"></div>

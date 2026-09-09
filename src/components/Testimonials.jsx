@@ -1,41 +1,103 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FaQuoteLeft, FaStar } from "react-icons/fa";
-import { supabase } from "../lib/supabaseClient";
 
-const editions = ["All Editions", "UTS 2021", "UTS 2022", "UTS 2023", "UTS 2024"];
+const editions = ["All Editions", "UTS 2023", "UTS 2024"];
+
+// Real testimonials from UTS 2023 feedback - Most impactful responses selected
+const testimonialsData = [
+  {
+    id: 1,
+    name: "Omosola Happiness",
+    quote: "The insights from the speakers was so amazing. I've learnt that my decision matters a lot, how to get opportunities, having a global impact means I have to be creative in what I do. There's no new businesses but what makes one stands out is creativity. Start small and have a leverage. It's okay to fail but one has to fail forward. Fail means find, ask, improve and learn.",
+    edition: "UTS 2023",
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: "Ojuerayetan Emmanuel",
+    quote: "The way the guest speakers simplified things to know in the tech world was exceptional. My key takeaway: Creativity is the driving force in a technology oriented world.",
+    edition: "UTS 2023",
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: "Joseph Honour",
+    quote: "The speakers were incredible. Don't wait until you get employed to start getting job experience - that's what stuck with me the most.",
+    edition: "UTS 2023",
+    rating: 5,
+  },
+  {
+    id: 4,
+    name: "Ayobami Akande",
+    quote: "The orientation and coordination was top-notch. The tendency to pitch amidst great minds gave me so much confidence. Keep the fire burning!",
+    edition: "UTS 2023",
+    rating: 5,
+  },
+  {
+    id: 5,
+    name: "Owoyemi Joseph",
+    quote: "Everything! One thing that has stayed with me from all what the speakers said is the need to put out my work and develop my online presence. The coordination was perfect!",
+    edition: "UTS 2023",
+    rating: 5,
+  },
+  {
+    id: 6,
+    name: "Treasure Babatimehin",
+    quote: "The advice, experiences shared, and insight given were priceless. With resources, you can gather a team and they can think for you. Diligence is key. Learn what ever you want to learn, improve on yourself constantly, and use all that knowledge for school.",
+    edition: "UTS 2023",
+    rating: 5,
+  },
+  {
+    id: 7,
+    name: "Oyewale Deborah Omoyeni",
+    quote: "It was beyond expectation. I totally love everything about the program. It's worth more than 'free'. The speakers delivered well. Technology will catch up with you - you just have to decide to either join now.",
+    edition: "UTS 2023",
+    rating: 5,
+  },
+  {
+    id: 8,
+    name: "Oluwashemilore",
+    quote: "The sessions, the practicality, the fact that they have been in the system and they could merge their experience back then to now and deliver. They're not just spoon feeding us what to do, only the guidelines and basics that worked. It was a glorious experience. Make smart decisions! I'm a product of the decisions I make.",
+    edition: "UTS 2023",
+    rating: 5,
+  },
+  {
+    id: 9,
+    name: "Aremu Enioluwafe",
+    quote: "The speakers gave practical examples and were able to communicate with the audience on the same frequency. To remain relevant in my career, I must be creative.",
+    edition: "UTS 2023",
+    rating: 5,
+  },
+  {
+    id: 10,
+    name: "Olaoke Stephen",
+    quote: "The speakers were amazing. Be diligent - that's my takeaway. The networking provisions were excellent.",
+    edition: "UTS 2023",
+    rating: 5,
+  },
+  {
+    id: 11,
+    name: "ADEWOYE Esther",
+    quote: "I love everything. I learnt better about the tech industry. I saw beyond what I knew in tech before attending UTS.",
+    edition: "UTS 2023",
+    rating: 5,
+  },
+  {
+    id: 12,
+    name: "Ademola Samuel",
+    quote: "The teaching sections were very impactful. Diligence in work - that's what I'm taking home with me.",
+    edition: "UTS 2023",
+    rating: 5,
+  },
+];
 
 const Testimonials = () => {
   const [selectedEdition, setSelectedEdition] = useState("All Editions");
-  const [testimonials, setTestimonials] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchTestimonialsFromSupabase();
-  }, []);
-
-  const fetchTestimonialsFromSupabase = async () => {
-    try {
-      setLoading(true);
-      const { data, error } = await supabase
-        .from("testimonials")
-        .select("*")
-        .eq("is_approved", true)
-        .order("created_at", { ascending: false });
-
-      if (error) throw error;
-      setTestimonials(data || []);
-    } catch (err) {
-      console.error("Error fetching testimonials from Supabase:", err.message);
-      setTestimonials([]);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const filteredTestimonials =
     selectedEdition === "All Editions"
-      ? testimonials
-      : testimonials.filter((t) => t.edition_attended === selectedEdition);
+      ? testimonialsData
+      : testimonialsData.filter((t) => t.edition === selectedEdition);
 
   return (
     <section
@@ -75,37 +137,30 @@ const Testimonials = () => {
         </div>
       </div>
 
-      {/* Loading State */}
-      {loading ? (
-        <div className="text-center py-16">
-          <div className="w-10 h-10 border-4 border-black border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-sm font-extrabold uppercase text-black">Loading stories from Supabase...</p>
-        </div>
-      ) : filteredTestimonials.length === 0 ? (
+      {/* Testimonials Cards Grid */}
+      {filteredTestimonials.length === 0 ? (
         <div className="text-center py-12 bg-white border-2 border-black max-w-md mx-auto p-8 shadow-[4px_4px_0px_#000]">
           <p className="text-base font-extrabold text-black uppercase">No testimonial stories listed for this edition yet.</p>
           <p className="text-xs font-bold text-black/70 mt-1">Check back soon for community updates!</p>
         </div>
       ) : (
-        /* Testimonials Cards Grid */
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {filteredTestimonials.map((item) => (
             <div
               key={item.id}
               className="bg-white border-2 border-black p-6 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-200 shadow-[4px_4px_0px_#000]"
+              data-aos="fade-up"
+              data-aos-delay={item.id * 50}
             >
               <div>
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 border border-black bg-[#FF0056] text-white">
-                    {item.edition_attended}
-                  </span>
-                  <span className="text-[10px] font-extrabold uppercase tracking-wider bg-black text-white px-2.5 py-1 border border-black">
-                    {item.outcome_badge}
+                    {item.edition}
                   </span>
                 </div>
 
                 <div className="flex gap-1 text-[#FFD100] mb-3">
-                  {[...Array(item.star_rating || 5)].map((_, i) => (
+                  {[...Array(item.rating)].map((_, i) => (
                     <FaStar key={i} className="text-sm" />
                   ))}
                 </div>
@@ -113,30 +168,21 @@ const Testimonials = () => {
                 <div className="relative mb-6">
                   <FaQuoteLeft className="text-black/15 text-3xl absolute -top-2 -left-1 pointer-events-none" />
                   <p className="text-sm font-medium text-black leading-relaxed relative z-10 pl-2">
-                    "{item.quote_text}"
+                    "{item.quote}"
                   </p>
                 </div>
               </div>
 
-              <div className="pt-4 border-t-2 border-black flex items-center gap-3">
-                <div className="w-12 h-12 border-2 border-black overflow-hidden flex-shrink-0 bg-gray-100">
-                  <img
-                    src={item.avatar_url || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"}
-                    alt={item.attendee_name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div>
-                  <h4
-                    className="text-base font-extrabold text-black leading-snug"
-                    style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-                  >
-                    {item.attendee_name}
-                  </h4>
-                  <p className="text-xs font-bold text-black/70">
-                    {item.job_role} @ <span className="text-black">{item.company}</span>
-                  </p>
-                </div>
+              <div className="pt-4 border-t-2 border-black">
+                <h4
+                  className="text-base font-extrabold text-black leading-snug"
+                  style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+                >
+                  {item.name}
+                </h4>
+                <p className="text-xs font-bold text-black/70 mt-1">
+                  UTS {item.edition.split(" ")[1]} Attendee
+                </p>
               </div>
             </div>
           ))}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabaseClient";
-import { HiArrowRight } from "react-icons/hi";
+import { HiArrowRight, HiX } from "react-icons/hi";
 
 // FALLBACK DATA COMMENTED OUT - Fetching from database only
 // const fallbackSpeakers = [
@@ -81,6 +81,8 @@ import { HiArrowRight } from "react-icons/hi";
 const PreviousSpeakers = () => {
   const [speakers, setSpeakers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedSpeaker, setSelectedSpeaker] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchPreviousSpeakers();
@@ -106,6 +108,18 @@ const PreviousSpeakers = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const openModal = (speaker) => {
+    setSelectedSpeaker(speaker);
+    setIsModalOpen(true);
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedSpeaker(null);
+    document.body.style.overflow = 'auto'; // Re-enable scrolling
   };
 
   return (
@@ -138,6 +152,7 @@ const PreviousSpeakers = () => {
             {speakers.map((speaker, index) => (
               <div
                 key={speaker.id}
+                onClick={() => openModal(speaker)}
                 className="flex flex-col items-center text-center group cursor-pointer"
                 data-aos="fade-up"
                 data-aos-delay={index * 50}
@@ -167,20 +182,91 @@ const PreviousSpeakers = () => {
                   )}
                 </p>
 
-                {/* View Profile Link */}
-                {speaker.profile_url && (
-                  <a
-                    href={speaker.profile_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-[#00ADFF] hover:text-[#0090D6] transition-colors group/link"
-                  >
-                    <span>view profile</span>
-                    <HiArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-                  </a>
-                )}
+                {/* Click to view more indicator */}
+                <p className="text-xs font-semibold text-[#00ADFF] group-hover:text-[#0090D6] transition-colors">
+                  Click to view more
+                </p>
               </div>
             ))}
+          </div>
+        )}
+
+        {/* Modal for Speaker Details */}
+        {isModalOpen && selectedSpeaker && (
+          <div 
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={closeModal}
+          >
+            <div 
+              className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={closeModal}
+                className="absolute top-4 right-4 w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:bg-[#00ADFF] transition-colors z-10"
+                aria-label="Close modal"
+              >
+                <HiX className="w-6 h-6" />
+              </button>
+
+              {/* Modal Content */}
+              <div className="p-8 md:p-12">
+                <div className="flex flex-col md:flex-row gap-8 items-start">
+                  {/* Speaker Photo */}
+                  <div className="w-48 h-48 flex-shrink-0 mx-auto md:mx-0">
+                    <img
+                      src={selectedSpeaker.photo_url}
+                      alt={selectedSpeaker.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  {/* Speaker Info */}
+                  <div className="flex-1">
+                    <h3 className="text-3xl md:text-4xl font-extrabold text-black mb-2">
+                      {selectedSpeaker.name}
+                    </h3>
+                    <p className="text-lg text-black/70 font-semibold mb-1">
+                      {selectedSpeaker.title}
+                    </p>
+                    {selectedSpeaker.company && (
+                      <p className="text-base text-[#00ADFF] font-bold mb-4">
+                        {selectedSpeaker.company}
+                      </p>
+                    )}
+                    {selectedSpeaker.year && (
+                      <p className="text-sm text-black/60 font-medium mb-6">
+                        UTS {selectedSpeaker.year}
+                      </p>
+                    )}
+
+                    {/* Bio */}
+                    {selectedSpeaker.bio && (
+                      <div className="mb-6">
+                        <h4 className="text-sm font-extrabold uppercase text-black mb-3">About</h4>
+                        <p className="text-base text-black/80 leading-relaxed whitespace-pre-line">
+                          {selectedSpeaker.bio}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Profile Link */}
+                    {selectedSpeaker.profile_url && (
+                      <a
+                        href={selectedSpeaker.profile_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white font-bold text-sm uppercase tracking-wider hover:bg-[#00ADFF] transition-colors"
+                      >
+                        <span>View Profile</span>
+                        <HiArrowRight className="w-4 h-4" />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </div>
