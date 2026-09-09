@@ -136,7 +136,7 @@ const PreviousSpeakers = () => {
             Previous Speakers
           </h2>
           <p className="text-base md:text-lg text-black/70 max-w-2xl mx-auto">
-            A selection of speakers from our cohorts
+            A selection of speakers from our previous events
           </p>
         </div>
 
