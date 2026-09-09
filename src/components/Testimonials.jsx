@@ -166,8 +166,8 @@ const Testimonials = () => {
                 </div>
 
                 <div className="relative mb-6">
-                  <FaQuoteLeft className="text-black/15 text-3xl absolute -top-2 -left-1 pointer-events-none" />
-                  <p className="text-sm font-medium text-black leading-relaxed relative z-10 pl-2">
+                  <FaQuoteLeft className="text-black text-lg absolute -top-1 -left-0.5 pointer-events-none" />
+                  <p className="text-sm font-medium text-black leading-relaxed relative z-10 pl-5">
                     "{item.quote}"
                   </p>
                 </div>

@@ -186,7 +186,7 @@ const Tracks = () => {
       <div className="text-center mb-6 sm:mb-8 px-4 sm:px-6">
         <p className="text-xs sm:text-sm font-bold tracking-widest text-gray-500 uppercase mb-2">UTS 5.0 — The Half Decade Event</p>
         <h2
-          className="font-extrabold uppercase leading-none"
+          className="font-extrabold uppercase leading-none mb-4"
           style={{
             fontFamily: "'Bricolage Grotesque', sans-serif",
             fontSize: "clamp(28px, 5vw, 56px)",
@@ -194,8 +194,24 @@ const Tracks = () => {
             letterSpacing: "-1px",
           }}
         >
-       UTS ACADEMY <span className="font-sans text-sm"> (Coming Soon!)</span>
+          UTS ACADEMY
         </h2>
+        
+        {/* Coming Soon Badge */}
+        <div className="inline-flex items-center gap-3 bg-[#FFD100] border-2 border-black px-6 py-3 shadow-[4px_4px_0px_#000] mb-4">
+          <div className="flex gap-1">
+            <span className="w-2 h-2 bg-black rounded-full animate-bounce" style={{ animationDelay: '0s' }}></span>
+            <span className="w-2 h-2 bg-black rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></span>
+            <span className="w-2 h-2 bg-black rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></span>
+          </div>
+          <span className="font-extrabold text-black text-sm sm:text-base uppercase tracking-wider">Coming Soon</span>
+          <div className="flex gap-1">
+            <span className="w-2 h-2 bg-black rounded-full animate-bounce" style={{ animationDelay: '0s' }}></span>
+            <span className="w-2 h-2 bg-black rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></span>
+            <span className="w-2 h-2 bg-black rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></span>
+          </div>
+        </div>
+        
         <p className="text-gray-600 mt-2 text-xs sm:text-sm md:text-base max-w-xl mx-auto font-medium">
           Every track takes you from Zero to Pro. Pick your lane and start your journey.
         </p>

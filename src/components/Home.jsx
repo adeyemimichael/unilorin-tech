@@ -37,10 +37,10 @@ function Home() {
       <Hero />
       <About />
       <Info />
-      <Tracks />
-      <Speakers />
       <PreviousSpeakers />
+      <Speakers />
       <Highlight />
+      <Tracks />
       <Testimonials />
       <Partners />
       <Sponsors />
