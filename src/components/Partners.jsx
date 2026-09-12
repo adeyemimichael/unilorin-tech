@@ -107,7 +107,7 @@ const Partners = () => {
             className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-black uppercase tracking-tight"
             style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
           >
-            Our Partners &amp; Sponsors
+            Our Previous Partners &amp; Sponsors
           </h2>
           <p className="text-black/80 font-medium text-sm sm:text-base max-w-2xl mx-auto mt-3">
             Organizations and tech giants that have empowered Unilorin Tech Summit over the past half decade.

@@ -163,8 +163,8 @@ const Highlight = () => {
             letterSpacing: "-1px",
           }}
         >
-          Highlights for
-          <span style={{ color: "#1a1a1a" }}> UTS 2024</span>
+            UTS  Highlights 
+          <span style={{ color: "#1a1a1a" }}></span>
         </h2>
         <p className="text-gray-600 mt-2 sm:mt-3 text-xs sm:text-sm md:text-base max-w-lg mx-auto font-medium">
           A look back at the energy, learning, keynotes, and community that made it unforgettable.
