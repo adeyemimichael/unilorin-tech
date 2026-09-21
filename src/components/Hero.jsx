@@ -13,6 +13,7 @@ const Hero = () => {
   const [bottomLeftIndex, setBottomLeftIndex] = useState(1);
   const [galleryPhotos, setGalleryPhotos] = useState(fallbackImages);
   const [showToast, setShowToast] = useState(false);
+  const [showAlternateText, setShowAlternateText] = useState(false);
 
   const handleTicketClick = (e) => {
     e.preventDefault();
@@ -21,6 +22,15 @@ const Hero = () => {
 
   useEffect(() => {
     fetchGalleryFromSupabase();
+  }, []);
+
+  // Toggle text every 3 seconds
+  useEffect(() => {
+    const textInterval = setInterval(() => {
+      setShowAlternateText((prev) => !prev);
+    }, 3000);
+
+    return () => clearInterval(textInterval);
   }, []);
 
   const fetchGalleryFromSupabase = async () => {
@@ -72,10 +82,42 @@ const Hero = () => {
           {/* Staggered Giant Headline */}
           <div className="w-full flex flex-col relative select-none">
             
-            {/* Top Line: "Unilorin" + Floating Image Card on Desktop */}
+            {/* Top Line: Animated Text with flip on "Event/Community" */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <h1 className="text-black font-extrabold text-5xl sm:text-7xl md:text-[110px] lg:text-[145px] xl:text-[170px] leading-[0.88] tracking-tight transition-all duration-500 cursor-pointer">
-                Unilorin
+                A Global Tech{' '}
+                <span className="inline-block relative align-bottom" style={{ 
+                  width: '1.2em',
+                  height: '1em',
+                  verticalAlign: 'baseline'
+                }}>
+                  <span 
+                    className={`absolute inset-0 flex items-center justify-start mt-3 sm:mt-5 md:mt-8 lg:mt-10 xl:mt-12 ${
+                      showAlternateText 
+                        ? 'animate-flip-out opacity-0' 
+                        : 'animate-flip-in opacity-100'
+                    }`}
+                    style={{ 
+                      animationDuration: '0.6s',
+                      visibility: showAlternateText ? 'hidden' : 'visible'
+                    }}
+                  >
+                    Event
+                  </span>
+                  <span 
+                    className={`absolute inset-0 flex items-center justify-start mt-3 sm:mt-6 md:mt-9 lg:mt-12 xl:mt-14 text-4xl sm:text-7xl md:text-[110px] lg:text-[145px] xl:text-9xl ${
+                      showAlternateText 
+                        ? 'animate-flip-in opacity-100' 
+                        : 'animate-flip-out opacity-0'
+                    }`}
+                    style={{ 
+                      animationDuration: '0.6s',
+                      visibility: showAlternateText ? 'visible' : 'hidden'
+                    }}
+                  >
+                    Community
+                  </span>
+                </span>
               </h1>
 
               {/* Dynamic Floating Image Card - Clean side-by-side positioning on desktop */}
@@ -89,10 +131,10 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Bottom Line: "Tech Summit" */}
+            {/* Bottom Line: Static "In a University" */}
             <div className="flex items-center justify-start sm:justify-end md:justify-center md:pl-[6%] relative mt-2 sm:mt-1">
               <h1 className="text-black font-extrabold text-5xl sm:text-7xl md:text-[110px] lg:text-[145px] xl:text-[170px] leading-[0.88] tracking-tight transition-all duration-500 cursor-pointer">
-                Tech Summit
+                In a University
               </h1>
             </div>
 

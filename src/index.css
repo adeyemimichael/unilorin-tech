@@ -49,3 +49,41 @@ body {
 .animate-pop-bounce {
   animation: popBounce 2.4s cubic-bezier(0.28, 0.84, 0.42, 1) infinite;
 }
+
+
+/* Flip animations for Hero headline text */
+@keyframes flip-in {
+  0% {
+    opacity: 0;
+    transform: perspective(400px) rotateX(-90deg);
+  }
+  40% {
+    transform: perspective(400px) rotateX(-10deg);
+  }
+  70% {
+    transform: perspective(400px) rotateX(10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(400px) rotateX(0deg);
+  }
+}
+
+@keyframes flip-out {
+  0% {
+    opacity: 1;
+    transform: perspective(400px) rotateX(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: perspective(400px) rotateX(90deg);
+  }
+}
+
+.animate-flip-in {
+  animation: flip-in 0.6s ease-out forwards;
+}
+
+.animate-flip-out {
+  animation: flip-out 0.6s ease-in forwards;
+}
