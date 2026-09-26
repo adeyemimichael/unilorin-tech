@@ -13,7 +13,8 @@ const Hero = () => {
   const [bottomLeftIndex, setBottomLeftIndex] = useState(1);
   const [galleryPhotos, setGalleryPhotos] = useState(fallbackImages);
   const [showToast, setShowToast] = useState(false);
-  const [showAlternateText, setShowAlternateText] = useState(false);
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const words = ['Event', 'Community', 'Summit'];
 
   const handleTicketClick = (e) => {
     e.preventDefault();
@@ -24,10 +25,10 @@ const Hero = () => {
     fetchGalleryFromSupabase();
   }, []);
 
-  // Toggle text every 3 seconds
+  // Cycle through three words every 3 seconds
   useEffect(() => {
     const textInterval = setInterval(() => {
-      setShowAlternateText((prev) => !prev);
+      setCurrentWordIndex((prev) => (prev + 1) % 3);
     }, 3000);
 
     return () => clearInterval(textInterval);
@@ -65,9 +66,9 @@ const Hero = () => {
   const currentBottomLeftImage = galleryPhotos[bottomLeftIndex] || anu;
 
   return (
-    <section id="hero" className="w-full bg-white min-h-screen p-3 md:p-6 lg:p-8 font-brico">
+    <section id="hero" className="w-full bg-white min-h-screen p-3 md:p-6 lg:p-8 font-brico touch-pan-y overflow-visible">
       {/* Outer Soft Cream Rounded Container */}
-      <div className="w-full bg-[#FAF6EE] rounded-[28px] sm:rounded-[36px] md:rounded-[44px] min-h-[92vh] relative overflow-hidden flex flex-col justify-between p-4 sm:p-6 md:p-10 lg:p-12 border border-black/5 shadow-2xl">
+      <div className="w-full bg-[#FAF6EE] rounded-[28px] sm:rounded-[36px] md:rounded-[44px] min-h-[92vh] relative overflow-visible flex flex-col justify-between p-4 sm:p-6 md:p-10 lg:p-12 border border-black/5 shadow-2xl">
         
         {/* Top Floating Navbar inside the container */}
         <Navbar />
@@ -82,41 +83,31 @@ const Hero = () => {
           {/* Staggered Giant Headline */}
           <div className="w-full flex flex-col relative select-none">
             
-            {/* Top Line: Animated Text with flip on "Event/Community" */}
+            {/* Top Line: Animated Text with flip on "Event/Community/Summit" */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <h1 className="text-black font-extrabold text-5xl sm:text-7xl md:text-[110px] lg:text-[145px] xl:text-[170px] leading-[0.88] tracking-tight transition-all duration-500 cursor-pointer">
                 A Global Tech{' '}
                 <span className="inline-block relative align-bottom" style={{ 
-                  width: '1.2em',
+                  width: '4em',
                   height: '1em',
                   verticalAlign: 'baseline'
                 }}>
-                  <span 
-                    className={`absolute inset-0 flex items-center justify-start mt-3 sm:mt-5 md:mt-8 lg:mt-10 xl:mt-12 ${
-                      showAlternateText 
-                        ? 'animate-flip-out opacity-0' 
-                        : 'animate-flip-in opacity-100'
-                    }`}
-                    style={{ 
-                      animationDuration: '0.6s',
-                      visibility: showAlternateText ? 'hidden' : 'visible'
-                    }}
-                  >
-                    Event
-                  </span>
-                  <span 
-                    className={`absolute inset-0 flex items-center justify-start mt-3 sm:mt-6 md:mt-9 lg:mt-12 xl:mt-14 text-4xl sm:text-7xl md:text-[110px] lg:text-[145px] xl:text-9xl ${
-                      showAlternateText 
-                        ? 'animate-flip-in opacity-100' 
-                        : 'animate-flip-out opacity-0'
-                    }`}
-                    style={{ 
-                      animationDuration: '0.6s',
-                      visibility: showAlternateText ? 'visible' : 'hidden'
-                    }}
-                  >
-                    Community
-                  </span>
+                  {words.map((word, index) => (
+                    <span
+                      key={word}
+                      className={`absolute inset-0 flex items-center justify-start mt-3 sm:mt-5 md:mt-8 lg:mt-10 xl:mt-12 text-5xl sm:text-7xl md:text-[110px] lg:text-[145px] xl:text-[170px] ${
+                        currentWordIndex === index
+                          ? 'animate-flip-in opacity-100'
+                          : 'animate-flip-out opacity-0'
+                      }`}
+                      style={{
+                        animationDuration: '0.6s',
+                        visibility: currentWordIndex === index ? 'visible' : 'hidden'
+                      }}
+                    >
+                      {word}
+                    </span>
+                  ))}
                 </span>
               </h1>
 

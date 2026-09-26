@@ -14,6 +14,7 @@ import ScrollProgress from './ScrollProgress';
 import Tracks from './Tracks';
 import Speakers from './Speakers';
 import PreviousSpeakers from './PreviousSpeakers';
+import PreviousPartners from './PreviousPartners';
 import Testimonials from './Testimonials';
 
 function Home() {
@@ -42,6 +43,7 @@ function Home() {
       <Highlight />
       <Tracks />
       <Testimonials />
+      <PreviousPartners />
       <Partners />
       <Sponsors />
       <Footer />

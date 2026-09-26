@@ -61,6 +61,14 @@ const AdminPortal = () => {
     display_order: 1,
   });
 
+  // Previous Partners Form
+  const [previousPartnerForm, setPreviousPartnerForm] = useState({
+    name: "",
+    logo_url: "",
+    year: "2024",
+    display_order: 1,
+  });
+
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
@@ -323,6 +331,47 @@ const AdminPortal = () => {
     }
   };
 
+  const handlePreviousPartnerSubmit = async (e) => {
+    e.preventDefault();
+    setUploading(true);
+    setStatusMsg(null);
+
+    console.log("Submitting Previous Partner record...");
+
+    try {
+      if (!file) {
+        setStatusMsg({ type: "error", text: "Please select a partner logo to upload." });
+        setUploading(false);
+        return;
+      }
+      const logoUrl = await uploadFileToSupabase("avatars");
+
+      console.log(" Inserting record into 'previous_partners' table...");
+
+      const { data, error } = await supabase.from("previous_partners").insert([
+        {
+          name: previousPartnerForm.name,
+          logo_url: logoUrl,
+          year: parseInt(previousPartnerForm.year),
+          display_order: parseInt(previousPartnerForm.display_order),
+        },
+      ]).select();
+
+      if (error) throw error;
+
+      console.log(" SUCCESS! Previous partner record inserted:", data);
+      setStatusMsg({ type: "success", text: "Previous partner added successfully!" });
+      setFile(null);
+      setPreview(null);
+      setPreviousPartnerForm({ name: "", logo_url: "", year: "2024", display_order: 1 });
+    } catch (err) {
+      console.error(" Failed to insert previous partner record:", err.message);
+      setStatusMsg({ type: "error", text: err.message || "Failed to add previous partner." });
+    } finally {
+      setUploading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#FAF6EE] font-brico flex flex-col justify-between">
       <div>
@@ -354,6 +403,7 @@ const AdminPortal = () => {
                 { id: "sponsors", label: " Add Sponsor / Partner" },
                 { id: "speakers", label: " Add Speaker" },
                 { id: "previousSpeakers", label: " Add Previous Speaker" },
+                { id: "previousPartners", label: " Add Previous Partner" },
                 { id: "team", label: " Add Team Member" },
               ].map((tab) => (
                 <button
@@ -731,13 +781,10 @@ const AdminPortal = () => {
                       onChange={(e) => setPreviousSpeakerForm({ ...previousSpeakerForm, year: e.target.value })}
                       className="w-full p-3 bg-[#FAF6EE] border-2 border-black font-bold text-sm text-black"
                     >
-                      <option value="2020">UTS 1.0 (2020)</option>
-                      <option value="2021">UTS 2.0 (2021)</option>
-                      <option value="2022">UTS 3.0 (2022)</option>
-                      <option value="2023">UTS 4.0 (2023)</option>
-                      <option value="2024">UTS 5.0 (2024)</option>
-                      <option value="2025">UTS 6.0 (2025)</option>
-                      <option value="2026">UTS 7.0 (2026)</option>
+                      <option value="2023">UTS 1.0 (2023)</option>
+                      <option value="2024">UTS 2.0 (2024)</option>
+                      <option value="2025">UTS 3.0 (2025)</option>
+                      <option value="2026">UTS 4.0 (2026)</option>
                     </select>
                   </div>
                 </div>
@@ -802,6 +849,72 @@ const AdminPortal = () => {
                   className="w-full py-4 bg-black text-white font-extrabold text-sm uppercase tracking-wider border-2 border-black hover:bg-[#973AE0] transition-colors shadow-[4px_4px_0px_#000] mt-2"
                 >
                   {uploading ? "Adding Previous Speaker..." : "Add Previous Speaker ➔"}
+                </button>
+              </form>
+            )}
+
+            {/* TAB 6: PREVIOUS PARTNERS FORM */}
+            {activeTab === "previousPartners" && (
+              <form onSubmit={handlePreviousPartnerSubmit} className="flex flex-col gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-xs font-extrabold uppercase text-black block mb-1">Partner / Sponsor Name *</label>
+                    <input
+                      type="text"
+                      required
+                      value={previousPartnerForm.name}
+                      onChange={(e) => setPreviousPartnerForm({ ...previousPartnerForm, name: e.target.value })}
+                      placeholder="e.g. Google, Microsoft, AWS"
+                      className="w-full p-3 bg-[#FAF6EE] border-2 border-black font-bold text-sm text-black"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-extrabold uppercase text-black block mb-1">UTS Year / Edition *</label>
+                    <select
+                      value={previousPartnerForm.year}
+                      onChange={(e) => setPreviousPartnerForm({ ...previousPartnerForm, year: e.target.value })}
+                      className="w-full p-3 bg-[#FAF6EE] border-2 border-black font-bold text-sm text-black"
+                    >
+                      <option value="2023">UTS 1.0 (2023)</option>
+                      <option value="2024">UTS 2.0 (2024)</option>
+                      <option value="2025">UTS 3.0 (2025)</option>
+                      <option value="2026">UTS 4.0 (2026)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="text-xs font-extrabold uppercase text-black block mb-1">Display Order</label>
+                  <input
+                    type="number"
+                    min="1"
+                    value={previousPartnerForm.display_order}
+                    onChange={(e) => setPreviousPartnerForm({ ...previousPartnerForm, display_order: e.target.value })}
+                    placeholder="1"
+                    className="w-full p-3 bg-[#FAF6EE] border-2 border-black font-bold text-sm text-black"
+                  />
+                  <p className="text-[10px] text-black/60 mt-1 font-medium">
+                    Lower numbers appear first (1, 2, 3...). Use sequential numbers for easy reordering.
+                  </p>
+                </div>
+
+                <div className="bg-[#FFD100]/10 border-[#FFD100] p-4 mt-2">
+                  <p className="text-xs font-bold text-black uppercase mb-2">Logo Guidelines:</p>
+                  <ul className="text-[11px] text-black/80 space-y-1 font-medium">
+                    <li>• Square or rectangular logos work best</li>
+                    <li>• Transparent background (PNG) preferred</li>
+                    <li>• Minimum size: 400x400px</li>
+                    <li>• High resolution, clear branding</li>
+                    <li>• SVG format is ideal for scalability</li>
+                  </ul>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={uploading}
+                  className="w-full py-4 bg-black text-white font-extrabold text-sm uppercase tracking-wider border-2 border-black hover:bg-[#973AE0] transition-colors shadow-[4px_4px_0px_#000] mt-2"
+                >
+                  {uploading ? "Adding Previous Partner..." : "Add Previous Partner ➔"}
                 </button>
               </form>
             )}
