@@ -26,7 +26,7 @@ const Footer = () => {
             Get in Touch
           </h3>
           <p className="text-[#D5B0F3]/80 font-medium text-sm md:text-base mb-6">
-            Have questions or want to partner with us? We'd love to hear from you!
+            Have questions or want to partner with us? We&apos;d love to hear from you!
           </p>
           <a
             href="mailto:partnerships@unilorintechsummit.org"

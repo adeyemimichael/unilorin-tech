@@ -35,7 +35,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="w-full pt-4 pb-2 px-2 md:px-6 sticky">
+    <header className="w-full pt-4 pb-2 px-2 md:px-6">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         
         {/* Left Original Logo - Unilorin Tech Summit */}

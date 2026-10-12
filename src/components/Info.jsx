@@ -40,7 +40,7 @@ function useCountUp(target, duration = 1800) {
 const Info = () => {
   const width = "100vw";
   const speakers = useCountUp(10, 1600);
-  const youngMinds = useCountUp(5000, 2200);
+  const youngMinds = useCountUp(3000, 2200);
   const [showToast, setShowToast] = useState(false);
 
   const handleTicketClick = (e) => {

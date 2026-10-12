@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
 
@@ -106,6 +107,15 @@ const PhotoCard = ({ photo, index }) => {
   );
 };
 
+PhotoCard.propTypes = {
+  photo: PropTypes.shape({
+    caption: PropTypes.string,
+    image_url: PropTypes.string,
+    edition_year: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  }).isRequired,
+  index: PropTypes.number.isRequired,
+};
+
 const Highlight = () => {
   const scrollRef = useRef(null);
   const [photos, setPhotos] = useState([]);
@@ -163,7 +173,7 @@ const Highlight = () => {
             letterSpacing: "-1px",
           }}
         >
-            UTS  Highlights 
+            UTS Highlights
           <span style={{ color: "#1a1a1a" }}></span>
         </h2>
         <p className="text-gray-600 mt-2 sm:mt-3 text-xs sm:text-sm md:text-base max-w-lg mx-auto font-medium">

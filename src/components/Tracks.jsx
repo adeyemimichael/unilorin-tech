@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import PropTypes from "prop-types";
 
 const tracks = [
   {
@@ -58,6 +59,10 @@ const WaveBottom = ({ color }) => (
   </svg>
 );
 
+WaveBottom.propTypes = {
+  color: PropTypes.string.isRequired,
+};
+
 // Tool timeline row
 const ToolTimeline = ({ tools }) => (
   <div className="relative mt-3 mb-2 px-1 sm:px-2">
@@ -87,6 +92,10 @@ const ToolTimeline = ({ tools }) => (
     </div>
   </div>
 );
+
+ToolTimeline.propTypes = {
+  tools: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 const TrackCard = ({ track, index }) => {
   return (
@@ -165,6 +174,17 @@ const TrackCard = ({ track, index }) => {
       </div>
     </div>
   );
+};
+
+TrackCard.propTypes = {
+  track: PropTypes.shape({
+    cardBg: PropTypes.string,
+    iconBg: PropTypes.string,
+    title: PropTypes.string,
+    details: PropTypes.string,
+    tools: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 const Tracks = () => {

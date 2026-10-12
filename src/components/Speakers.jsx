@@ -167,7 +167,7 @@ const Speakers = () => {
                     Session Topic
                   </span>
                   <p className="text-xs font-bold text-black leading-snug">
-                    "{speaker.topic || "Building High Impact Tech Systems"}"
+                    {speaker.topic || "Building High Impact Tech Systems"}
                   </p>
                 </div>
               </div>
@@ -226,7 +226,7 @@ const Speakers = () => {
                 Presentation Topic
               </span>
               <p className="text-base font-extrabold text-black">
-                "{selectedSpeaker.topic || "Building High Impact Tech Systems"}"
+                {selectedSpeaker.topic || "Building High Impact Tech Systems"}
               </p>
             </div>
 

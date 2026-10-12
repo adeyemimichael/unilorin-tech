@@ -118,6 +118,7 @@ const Hero = () => {
                   src={currentTopRightImage}
                   alt="Unilorin Tech Summit visual"
                   className="w-full h-full object-cover transition-opacity duration-700"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -154,7 +155,7 @@ const Hero = () => {
         </div>
 
         {/* Bottom Section: Floating Card Left, Spinning Badge Center, Tagline Right */}
-        <div className="relative z-10 w-full pt-6 md:pt-10 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="relative z-10 w-full pt-4 md:pt-10 flex flex-row flex-wrap md:flex-nowrap items-center justify-center md:justify-between gap-3 md:gap-8">
           
           {/* Dynamic Bottom Left Floating Image Card */}
           <div className="w-48 h-32 sm:w-56 sm:h-36 md:w-64 md:h-44 lg:w-72 lg:h-48 rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border-4 border-white transform -rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-500 shrink-0 bg-gray-200">
@@ -163,6 +164,7 @@ const Hero = () => {
               src={currentBottomLeftImage}
               alt="Community attendee"
               className="w-full h-full object-cover transition-opacity duration-700"
+              decoding="async"
             />
           </div>
 
@@ -209,7 +211,7 @@ const Hero = () => {
             
             {/* Supporting Description */}
             <p className="text-black/75 text-xs md:text-sm font-medium leading-relaxed">
-              Meet, connect and get inspired at Nigeria's premier student tech event—equipping 40,000+ students for the global tech ecosystem.
+              Meet, connect and get inspired at Nigeria&apos;s premier student tech event—equipping 40,000+ students for the global tech ecosystem.
             </p>
           </div>
 

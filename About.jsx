@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const About = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -27,7 +27,7 @@ const About = () => {
             >
               <p className="md:p-4 p-4 font-normal md:text-[24px] text-[16px]">
                 Welcome to the Unilorin Tech Summit, a prestigious annual tech
-                extravaganza hosted right within the vibrant heart of Nigeria's
+                extravaganza hosted right within the vibrant heart of Nigeria&apos;s
                 Unilorin University, home to an astounding 40,000+ students.
               </p>
               <p className="md:p-4 p-4 font-normal md:text-[24px] text-[16px]">
@@ -36,14 +36,14 @@ const About = () => {
                 the secrets to thriving in the ever-evolving Tech Ecosystem.
               </p>
               <p className="md:p-4 p-4 font-normal md:text-[24px] text-[16px]">
-                We're here to equip you with the skills to ride the tech wave
+                We&apos;re here to equip you with the skills to ride the tech wave
                 and make a global impact – all while having a blast!
               </p>
 
               {isExpanded && (
                 <p className="md:p-4 p-4 font-normal md:text-[24px] text-[16px]">
                   This is the additional content that will be shown when the
-                  user clicks the "Read More" button. It can include more
+                  user clicks the &quot;Read More&quot; button. It can include more
                   details about the team, mission, or history.
                 </p>
               )}

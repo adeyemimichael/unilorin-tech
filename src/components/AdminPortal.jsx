@@ -794,7 +794,7 @@ const AdminPortal = () => {
                   <textarea
                     value={previousSpeakerForm.bio}
                     onChange={(e) => setPreviousSpeakerForm({ ...previousSpeakerForm, bio: e.target.value })}
-                    placeholder="Detailed biography about the speaker's background, achievements, expertise, notable projects, and contributions to the tech ecosystem. You can write multiple paragraphs."
+                    placeholder="Detailed biography about the speaker&apos;s background, achievements, expertise, notable projects, and contributions to the tech ecosystem. You can write multiple paragraphs."
                     rows="8"
                     className="w-full p-3 bg-[#FAF6EE] border-2 border-black font-bold text-sm text-black resize-y"
                   />
@@ -813,7 +813,7 @@ const AdminPortal = () => {
                     className="w-full p-3 bg-[#FAF6EE] border-2 border-black font-bold text-sm text-black"
                   />
                   <p className="text-[10px] text-black/60 mt-1 font-medium">
-                    Add LinkedIn, Twitter, or personal website URL for "view profile" link
+                    Add LinkedIn, Twitter, or personal website URL for the view profile link.
                   </p>
                 </div>
 

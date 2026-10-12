@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { FaLinkedinIn, FaTwitter, FaTimes } from "react-icons/fa";
 import { supabase } from "../lib/supabaseClient";
 import Navbar from "./Navbar";
@@ -83,10 +84,10 @@ const departments = [
   "Logistics & Operations",
 ];
 
-const Team = () => {
+const Team = ({ embedded = false }) => {
   const [activeDept, setActiveDept] = useState("All");
   const [teamMembers, setTeamMembers] = useState(staticTeam);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
   const [selectedMember, setSelectedMember] = useState(null);
 
   useEffect(() => {
@@ -132,14 +133,15 @@ const Team = () => {
       : teamMembers.filter((m) => m.department === activeDept);
 
   return (
-    <div className="min-h-screen bg-[#FAF6EE] font-brico flex flex-col justify-between">
+    <div className={`${embedded ? "" : "min-h-screen"} bg-[#FAF6EE] font-brico flex flex-col justify-between`}>
       <div>
-        {/* Navbar */}
-        <div className="p-3 md:p-6 lg:p-8 bg-[#14382C]">
-          <div className="bg-[#FAF6EE] rounded-[28px] sm:rounded-[36px] p-4 sm:p-6 border border-black/5 shadow-xl">
-            <Navbar />
+        {!embedded && (
+          <div className="p-3 md:p-6 lg:p-8 bg-[#14382C]">
+            <div className="bg-[#FAF6EE] rounded-[28px] sm:rounded-[36px] p-4 sm:p-6 border border-black/5 shadow-xl">
+              <Navbar />
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Header */}
         <div className="max-w-7xl mx-auto text-center pt-8 pb-12 px-4 sm:px-6 lg:px-12">
@@ -313,10 +315,13 @@ const Team = () => {
         </div>
       )}
 
-      {/* Footer */}
-      <Footer />
+      {!embedded && <Footer />}
     </div>
   );
+};
+
+Team.propTypes = {
+  embedded: PropTypes.bool,
 };
 
 export default Team;

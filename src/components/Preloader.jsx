@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const Preloader = ({ onComplete }) => {
   const [progress, setProgress] = useState(0);
@@ -73,6 +74,10 @@ const Preloader = ({ onComplete }) => {
       </div>
     </div>
   );
+};
+
+Preloader.propTypes = {
+  onComplete: PropTypes.func,
 };
 
 export default Preloader;

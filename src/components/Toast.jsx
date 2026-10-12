@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { HiX, HiInformationCircle } from 'react-icons/hi';
 
 const Toast = ({ message, onClose, duration = 3000 }) => {
@@ -25,6 +26,12 @@ const Toast = ({ message, onClose, duration = 3000 }) => {
       </div>
     </div>
   );
+};
+
+Toast.propTypes = {
+  message: PropTypes.string.isRequired,
+  onClose: PropTypes.func.isRequired,
+  duration: PropTypes.number,
 };
 
 export default Toast;

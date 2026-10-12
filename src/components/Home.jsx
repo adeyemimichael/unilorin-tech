@@ -16,6 +16,7 @@ import Speakers from './Speakers';
 import PreviousSpeakers from './PreviousSpeakers';
 import PreviousPartners from './PreviousPartners';
 import Testimonials from './Testimonials';
+import Team from './Team';
 
 function Home() {
   useEffect(() => {
@@ -41,6 +42,7 @@ function Home() {
       <PreviousSpeakers />
       <Speakers />
       <Highlight />
+      <Team embedded />
       <Tracks />
       <Testimonials />
       <PreviousPartners />
