@@ -263,7 +263,7 @@ const Tracks = () => {
         {/* Cards row — scrollable */}
         <div
           ref={scrollRef}
-          className="flex gap-4 sm:gap-6 overflow-x-auto pb-8 pt-0 scroll-smooth px-6 sm:px-12 touch-pan-x snap-x snap-mandatory"
+          className="flex gap-4 sm:gap-6 overflow-x-auto pb-8 pt-0 scroll-smooth px-6 sm:px-12 snap-x snap-mandatory"
           style={{
             scrollbarWidth: "none",
             msOverflowStyle: "none",

@@ -88,6 +88,17 @@ const PreviousSpeakers = () => {
     fetchPreviousSpeakers();
   }, []);
 
+  useEffect(() => {
+    if (!isModalOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isModalOpen]);
+
   const fetchPreviousSpeakers = async () => {
     try {
       setLoading(true);
@@ -113,13 +124,11 @@ const PreviousSpeakers = () => {
   const openModal = (speaker) => {
     setSelectedSpeaker(speaker);
     setIsModalOpen(true);
-    document.body.style.overflow = 'hidden'; // Prevent scrolling
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedSpeaker(null);
-    document.body.style.overflow = 'auto'; // Re-enable scrolling
   };
 
   return (

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaTimes, FaExpand, FaArrowLeft } from "react-icons/fa";
 import { supabase } from "../lib/supabaseClient";
-import Navbar from "./Navbar";
 import Footer from "./Footer";
 
 const Gallery = () => {
@@ -47,13 +46,6 @@ const Gallery = () => {
   return (
     <div className="min-h-screen bg-[#FAF6EE] font-brico flex flex-col justify-between">
       <div>
-        {/* Top Header Wrapper */}
-        <div className="p-3 md:p-6 lg:p-8 bg-[#14382C]">
-          <div className="bg-[#FAF6EE] rounded-[28px] sm:rounded-[36px] p-4 sm:p-6 border border-black/5 shadow-xl">
-            <Navbar />
-          </div>
-        </div>
-
         {/* Page Hero */}
         <div className="max-w-7xl mx-auto pt-10 pb-8 px-4 sm:px-6 lg:px-8 text-center">
           <Link

@@ -3,12 +3,14 @@ import Home from './components/Home';
 import Team from './components/Team';
 import AdminPortal from './components/AdminPortal';
 import Gallery from './components/Gallery';
+import Navbar from './components/Navbar';
 import './App.css';
 
 function App() {
   return (
-    <div className="w-full min-h-screen m-0 p-0 overflow-x-hidden">
+    <div className="w-full min-h-screen m-0 p-0 overflow-x-clip">
       <Router>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/team" element={<Team />} />

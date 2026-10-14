@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { FaLinkedinIn, FaTwitter, FaTimes } from "react-icons/fa";
 import { supabase } from "../lib/supabaseClient";
-import Navbar from "./Navbar";
 import Footer from "./Footer";
 
 import att1 from "../assets/images/att1.webp";
@@ -135,14 +134,6 @@ const Team = ({ embedded = false }) => {
   return (
     <div className={`${embedded ? "" : "min-h-screen"} bg-[#FAF6EE] font-brico flex flex-col justify-between`}>
       <div>
-        {!embedded && (
-          <div className="p-3 md:p-6 lg:p-8 bg-[#14382C]">
-            <div className="bg-[#FAF6EE] rounded-[28px] sm:rounded-[36px] p-4 sm:p-6 border border-black/5 shadow-xl">
-              <Navbar />
-            </div>
-          </div>
-        )}
-
         {/* Header */}
         <div className="max-w-7xl mx-auto text-center pt-8 pb-12 px-4 sm:px-6 lg:px-12">
           <div className="inline-block bg-[#00B66C] text-white border-2 border-black px-4 py-1 text-xs font-extrabold uppercase tracking-widest mb-3">

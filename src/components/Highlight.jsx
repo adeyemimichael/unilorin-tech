@@ -221,7 +221,7 @@ const Highlight = () => {
           {/* Scrollable cards */}
           <div
             ref={scrollRef}
-            className="flex gap-4 sm:gap-8 overflow-x-auto scroll-smooth pb-8 px-8 sm:px-16 touch-pan-x snap-x snap-mandatory"
+            className="flex gap-4 sm:gap-8 overflow-x-auto scroll-smooth pb-8 px-8 sm:px-16 snap-x snap-mandatory"
             style={{
               scrollbarWidth: "none",
               msOverflowStyle: "none",

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { HiArrowDown } from 'react-icons/hi';
 import att1 from '../assets/images/att1.webp';
 import anu from '../assets/images/anu.webp';
-import Navbar from './Navbar';
 import { supabase } from '../lib/supabaseClient';
 import Toast from './Toast';
 
@@ -66,13 +65,10 @@ const Hero = () => {
   const currentBottomLeftImage = galleryPhotos[bottomLeftIndex] || anu;
 
   return (
-    <section id="hero" className="w-full bg-white min-h-screen p-3 md:p-6 lg:p-8 font-brico touch-pan-y overflow-visible">
+    <section id="hero" className="w-full bg-white min-h-screen p-3 md:p-6 lg:p-8 font-brico overflow-visible">
       {/* Outer Soft Cream Rounded Container */}
       <div className="w-full bg-[#FAF6EE] rounded-[28px] sm:rounded-[36px] md:rounded-[44px] min-h-[92vh] relative overflow-visible flex flex-col justify-between p-4 sm:p-6 md:p-10 lg:p-12 border border-black/5 shadow-2xl">
         
-        {/* Top Floating Navbar inside the container */}
-        <Navbar />
-
         {/* Ambient Blurred Background Soft Orbs */}
         <div className="absolute top-1/4 right-10 w-96 h-96 md:w-[600px] md:h-[600px] bg-gradient-to-tr from-[#BFD9FB]/80 via-[#DCEBFF]/60 to-transparent rounded-full blur-3xl pointer-events-none -z-0 transform translate-x-1/4"></div>
         <div className="absolute bottom-10 left-10 w-80 h-80 md:w-[500px] md:h-[500px] bg-gradient-to-br from-[#BFD9FB]/70 via-[#E4EFFF]/50 to-transparent rounded-full blur-3xl pointer-events-none -z-0"></div>
