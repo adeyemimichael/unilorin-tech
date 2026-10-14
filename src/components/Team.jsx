@@ -4,17 +4,14 @@ import { FaLinkedinIn, FaTwitter, FaTimes } from "react-icons/fa";
 import { supabase } from "../lib/supabaseClient";
 import Footer from "./Footer";
 
-import att1 from "../assets/images/att1.webp";
-import anu from "../assets/images/anu.webp";
+
 import leye from "../assets/images/leye.jpg";
-import coop from "../assets/images/coop.jpg";
-import atted from "../assets/images/atted.jpg";
-import iss from "../assets/images/iss.webp";
+
 
 const staticTeam = [
   {
     id: 1,
-    name: "Ayobami Adeyemi",
+    name: "A. Adeyemi",
     role: "Convener & Lead Organizer",
     department: "Executive Leads",
     photo_url: leye,
@@ -22,57 +19,7 @@ const staticTeam = [
     twitter_url: "https://twitter.com",
     linkedin_url: "https://linkedin.com",
   },
-  {
-    id: 2,
-    name: "Anuoluwapo Bakare",
-    role: "Head of Product & Design",
-    department: "Tech & Product",
-    photo_url: anu,
-    photo_url_fallback: anu,
-    bio: "Lead UI/UX architect designing intuitive interfaces and event experiences for UTS attendees.",
-    twitter_url: "https://twitter.com",
-    linkedin_url: "https://linkedin.com",
-  },
-  {
-    id: 3,
-    name: "Coop Oladele",
-    role: "Head of Engineering",
-    department: "Tech & Product",
-    photo_url: coop,
-    bio: "Fullstack cloud engineer overseeing registration infrastructure, ticketing, and live session tools.",
-    twitter_url: "https://twitter.com",
-    linkedin_url: "https://linkedin.com",
-  },
-  {
-    id: 4,
-    name: "Attahir Edward",
-    role: "Media & Branding Lead",
-    department: "Media & Branding",
-    photo_url: atted,
-    bio: "Creative director behind UTS 5.0 visual identity, photography coverage, and partner media relations.",
-    twitter_url: "https://twitter.com",
-    linkedin_url: "https://linkedin.com",
-  },
-  {
-    id: 5,
-    name: "Ismail Olatunji",
-    role: "Operations & Logistics Manager",
-    department: "Logistics & Operations",
-    photo_url: iss,
-    bio: "Managing venue management, gate verification, security protocols, and VIP guest hosting.",
-    twitter_url: "https://twitter.com",
-    linkedin_url: "https://linkedin.com",
-  },
-  {
-    id: 6,
-    name: "Kemi Adeleke",
-    role: "Partnerships & Sponsorships Lead",
-    department: "Executive Leads",
-    photo_url: att1,
-    bio: "Connecting global tech leaders and corporate sponsors with student talent at Unilorin Tech Summit.",
-    twitter_url: "https://twitter.com",
-    linkedin_url: "https://linkedin.com",
-  },
+  
 ];
 
 const departments = [
