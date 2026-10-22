@@ -3,6 +3,7 @@ import Home from './components/Home';
 import Team from './components/Team';
 import AdminPortal from './components/AdminPortal';
 import Gallery from './components/Gallery';
+import Join from './components/Join';
 import Navbar from './components/Navbar';
 import './App.css';
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/team" element={<Team />} />
           <Route path="/admin" element={<AdminPortal />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/join" element={<Join />} />
         </Routes>
       </Router>
     </div>

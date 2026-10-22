@@ -80,8 +80,14 @@ const Navbar = () => {
           </ul>
         </nav>
 
-        {/* Right CTA Button */}
+        {/* Right CTA Buttons */}
         <div className="hidden sm:flex items-center gap-2">
+          <Link
+            to="/join"
+            className="flex items-center bg-black hover:bg-[#1c4d3d] text-white rounded-full px-6 py-3.5 text-sm font-semibold transition-all duration-300 shadow-sm cursor-pointer"
+          >
+            Join UTS Community
+          </Link>
           <a
             href="#"
             onClick={handleTicketClick}
@@ -148,6 +154,13 @@ const Navbar = () => {
               <HiArrowRight className="w-4 h-4" />
             </span>
           </a>
+          <Link
+            to="/join"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center justify-center bg-black hover:bg-[#1c4d3d] text-white rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 cursor-pointer"
+          >
+            Join Community
+          </Link>
         </div>
       )}
 

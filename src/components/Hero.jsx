@@ -4,6 +4,7 @@ import att1 from '../assets/images/att1.webp';
 import anu from '../assets/images/anu.webp';
 import { supabase } from '../lib/supabaseClient';
 import Toast from './Toast';
+import { Link } from 'react-router-dom';
 
 const fallbackImages = [att1, anu];
 
@@ -136,6 +137,14 @@ const Hero = () => {
               >
                 Get Your Ticket →
               </a>
+
+              {/* CTA: Join Community */}
+              <Link
+                to="/join"
+                className="w-full sm:w-auto px-8 py-4 bg-black text-white font-bold text-sm md:text-base uppercase tracking-wider border-2 border-black hover:bg-[#00ADFF] hover:border-[#00ADFF] transition-all duration-300 shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#00ADFF] hover:translate-x-[-2px] hover:translate-y-[-2px] text-center cursor-pointer"
+              >
+                Join Community →
+              </Link>
 
               {/* Secondary CTA: Become a Sponsor */}
               <a
