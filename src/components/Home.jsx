@@ -42,7 +42,7 @@ function Home() {
       <PreviousSpeakers />
       <Speakers />
       <Highlight />
-      <Team embedded />
+      {/* <Team embedded /> */}
       <Tracks />
       <Testimonials />
       <PreviousPartners />
